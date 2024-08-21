@@ -10,7 +10,7 @@ const IndexDashboard = ({ isOpen }) => {
                 p: 3,
                 transition: 'margin 0.3s ease-in-out',
                 marginLeft: isOpen ? '10px' : '0px',
-                marginTop: '10px', // Espaçamento para a Topbar
+                marginTop: '10px',
             }}
         >
             <Toolbar />
