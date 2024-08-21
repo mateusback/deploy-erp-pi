@@ -1,21 +1,18 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './pages/login/Login';
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
-import Dashboard from './pages/dashboard/Dashboard';
+import IndexDashboard from './pages/dashboard';
+import DefaultLayout from './components/DefaultLayout';
 
 function App() {
   return (
     <>
-      <Header />
       <BrowserRouter>
         <Routes>
           <Route path='/' Component={Login}></Route>
-          <Route path='/dashboard' Component={Dashboard}></Route>
+          <Route path='/painel-controle' element={<DefaultLayout><IndexDashboard /></DefaultLayout>} />
         </Routes>
       </BrowserRouter>
-      <Footer />
     </>
   );
 }
