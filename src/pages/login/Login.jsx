@@ -13,8 +13,6 @@ import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
-import Divider from '@mui/material/Divider';
-import Chip from '@mui/material/Chip';
 
 const Login = () => {
 
@@ -96,17 +94,6 @@ const Login = () => {
                 <div className="col">
                     <Button onClick={login} className="w-full btn-login" label="Continuar" icon="pi pi-user" iconPos="left" severity="secondary" outlined />
                 </div>
-            </div>
-
-            <Divider>
-                <Chip label="Ou" size="small" />
-            </Divider>
-
-            <div className="text-center mt-4">
-                <span className="text-600 font-medium line-height-3">Não tem uma conta?
-                    <Link className="font-medium ml-2 no-underline text-blue-500 text-right" to="/registration" target="_blank">Cadastre-se</Link>
-                </span>
-                <Button className="w-full p-button-raised p-button-warning mt-5" label="Entrar com Google" icon="pi pi-google" iconPos="left" />
             </div>
         </Card>
     );
