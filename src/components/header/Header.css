@@ -1,6 +1,17 @@
-.header {
-    border: 1px solid #aaa9a9;
-    border-radius: 5px;
-    padding: 10px;
-    background-color: #dfdfdf;
+.topbar {
+    background-color: transparent !important;
+    color: black !important;
+    transition: margin-left 0.3s, width 0.3s;
+    border-bottom: solid 1px #c8c8c8 !important;
+    box-shadow: none !important;
+}
+
+.topbar.collapsed {
+    margin-left: 60px;
+    width: calc(100% - 60px);
+}
+
+.topbar.expanded {
+    margin-left: 240px;
+    width: calc(100% - 240px);
 }

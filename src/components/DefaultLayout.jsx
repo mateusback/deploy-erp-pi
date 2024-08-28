@@ -21,7 +21,7 @@ const DefaultLayout = ({ Children }) => {
     return (
         <Box sx={{ display: 'flex', flexDirection: 'column', minHeight: '100vh' }}>
             <CssBaseline />
-            <Header toggleSidebar={toggleSidebar} />
+            <Header isSidebarOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
             <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
             <Box
                 component="main"

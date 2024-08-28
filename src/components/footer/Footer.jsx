@@ -20,8 +20,8 @@ const Footer = ({ isSidebarOpen }) => {
         >
             <Typography variant="body2" color="text.secondary">
                 {'Copyright © '}
-                <Link color="inherit" href="https://yourwebsite.com/">
-                    Your Website
+                <Link color="inherit" href="#">
+                    The Rapazes
                 </Link>{' '}
                 {new Date().getFullYear()}
                 {'.'}

@@ -1,11 +1,17 @@
 import React from 'react';
-import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
-import { Notifications, AccountCircle, Menu } from '@mui/icons-material';
+import './Header.css';
+import { AppBar, Toolbar, Typography, IconButton, Avatar } from '@mui/material';
+import { Notifications, Menu } from '@mui/icons-material';
+import { deepOrange } from '@mui/material/colors';
 
-const Header = ({ toggleSidebar }) => {
+const Header = ({ isSidebarOpen, toggleSidebar }) => {
     return (
-        <AppBar position="fixed" sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}>
+        <AppBar
+            position="fixed"
+            className={`topbar ${isSidebarOpen ? 'expanded' : 'collapsed'}`}
+        >
             <Toolbar>
+
                 <IconButton
                     edge="start"
                     color="inherit"
@@ -17,12 +23,15 @@ const Header = ({ toggleSidebar }) => {
                 <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
                     Painel de Controle
                 </Typography>
-                <IconButton color="inherit">
-                    <Notifications />
-                </IconButton>
-                <IconButton color="inherit">
-                    <AccountCircle />
-                </IconButton>
+
+                <div className='teste'>
+                    <IconButton color="inherit">
+                        <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
+                    </IconButton>
+                    <IconButton color="inherit">
+                        <Notifications sx={{ fontSize: 20 }} />
+                    </IconButton>
+                </div>
             </Toolbar>
         </AppBar>
     );
