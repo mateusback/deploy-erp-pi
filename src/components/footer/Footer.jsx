@@ -1,11 +1,32 @@
-import React from "react";
-import './Footer.css';
+import React from 'react';
+import { Box } from '@mui/material';
+import { Typography } from '@mui/material';
+import { Link } from '@mui/material';
 
-const Footer = () => {
+const Footer = ({ isSidebarOpen }) => {
     return (
-        <div className="footer">
-            <p>&copy;2024</p>
-        </div>
+        <Box
+            component="footer"
+            sx={{
+                py: 2,
+                px: 3,
+                backgroundColor: (theme) =>
+                    theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
+                textAlign: 'center',
+                marginLeft: isSidebarOpen ? '240px' : '60px',
+                width: isSidebarOpen ? 'calc(100% - 240px)' : 'calc(100% - 60px)',
+                transition: 'margin-left 0.3s, width 0.3s',
+            }}
+        >
+            <Typography variant="body2" color="text.secondary">
+                {'Copyright © '}
+                <Link color="inherit" href="https://yourwebsite.com/">
+                    Your Website
+                </Link>{' '}
+                {new Date().getFullYear()}
+                {'.'}
+            </Typography>
+        </Box>
     );
 }
 

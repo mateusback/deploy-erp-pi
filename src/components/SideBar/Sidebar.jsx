@@ -1,33 +1,43 @@
-// src/components/Sidebar.js
 import React from 'react';
-import { Drawer, List, ListItem, ListItemIcon, ListItemText, Toolbar } from '@mui/material';
-import InboxIcon from '@mui/icons-material/Inbox';
+import { Drawer, List, ListItem, ListItemIcon, ListItemText, IconButton } from '@mui/material';
+import { Dashboard, Settings, Assessment, Menu } from '@mui/icons-material';
 
-const Sidebar = ({ isOpen }) => {
+const Sidebar = ({ isOpen, toggleSidebar }) => {
     return (
         <Drawer
-            variant="persistent"
-            anchor="left"
-            open={isOpen}
+            variant="permanent"
             sx={{
-                width: 240,
+                width: isOpen ? 240 : 60,
                 flexShrink: 0,
                 '& .MuiDrawer-paper': {
-                    width: 200,
+                    width: isOpen ? 240 : 60,
                     boxSizing: 'border-box',
-                    top: '0',
+                    transition: 'width 0.3s',
                 },
             }}
         >
-            <Toolbar />
+            <IconButton onClick={toggleSidebar} sx={{ margin: '8px' }}>
+                <Menu />
+            </IconButton>
             <List>
                 <ListItem button>
                     <ListItemIcon>
-                        <InboxIcon />
+                        <Dashboard />
                     </ListItemIcon>
-                    <ListItemText primary="Option 1" />
+                    {isOpen && <ListItemText primary="Dashboard" />}
                 </ListItem>
-                {/* Adicione mais itens conforme necessário */}
+                <ListItem button>
+                    <ListItemIcon>
+                        <Assessment />
+                    </ListItemIcon>
+                    {isOpen && <ListItemText primary="Relatórios" />}
+                </ListItem>
+                <ListItem button>
+                    <ListItemIcon>
+                        <Settings />
+                    </ListItemIcon>
+                    {isOpen && <ListItemText primary="Configurações" />}
+                </ListItem>
             </List>
         </Drawer>
     );
