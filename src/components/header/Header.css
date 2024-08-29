@@ -2,7 +2,7 @@
     background-color: transparent !important;
     color: black !important;
     transition: margin-left 0.3s, width 0.3s;
-    border-bottom: solid 1px #c8c8c8 !important;
+    border-bottom: solid 0px #c8c8c8 !important;
     box-shadow: none !important;
 }
 

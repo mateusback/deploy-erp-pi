@@ -21,7 +21,7 @@ const Header = ({ isSidebarOpen, toggleSidebar }) => {
                     <Menu />
                 </IconButton>
                 <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
-                    Painel de Controle
+                   Cardápio
                 </Typography>
 
                 <div className='teste'>

@@ -10,6 +10,7 @@ import { Box } from '@mui/material';
 // Import de Icones
 import { Info, InsertChart, Person, Settings, ShoppingCart, TableView, Wallet } from '@mui/icons-material';
 //Import interno
+import sidebar from './Sidebar.css'
 import LogoSVG from '../Img/logo.svg'
 
 const Sidebar = ({ isOpen }) => {
