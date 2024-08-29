@@ -21,17 +21,16 @@ const Header = ({ isSidebarOpen, toggleSidebar }) => {
                     <Menu />
                 </IconButton>
                 <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
-                   Cardápio
+                    Cardápio
                 </Typography>
 
-                <div className='teste'>
-                    <IconButton color="inherit">
-                        <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
-                    </IconButton>
-                    <IconButton color="inherit">
-                        <Notifications sx={{ fontSize: 20 }} />
-                    </IconButton>
-                </div>
+
+                <IconButton color="inherit">
+                    <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
+                </IconButton>
+                <IconButton color="inherit">
+                    <Notifications sx={{ fontSize: 20 }} />
+                </IconButton>
             </Toolbar>
         </AppBar>
     );

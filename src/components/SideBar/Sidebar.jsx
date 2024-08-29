@@ -10,7 +10,6 @@ import { Box } from '@mui/material';
 // Import de Icones
 import { Info, InsertChart, Person, Settings, ShoppingCart, TableView, Wallet } from '@mui/icons-material';
 //Import interno
-import sidebar from './Sidebar.css'
 import LogoSVG from '../Img/logo.svg'
 
 const Sidebar = ({ isOpen }) => {
@@ -70,7 +69,7 @@ const Sidebar = ({ isOpen }) => {
                     <ListItemIcon>
                         <TableView />
                     </ListItemIcon>
-                    {isOpen && <ListItemText primary="Comandas" />}
+                    {isOpen && <ListItemText className='teste' primary="Comandas" />}
                 </ListItem>
                 <ListItem button>
                     <ListItemIcon>
