@@ -2,31 +2,19 @@ import "./Login.css";
 import React, { useState } from "react";
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
-import OutlinedInput from '@mui/material/OutlinedInput';
 import TextField from '@mui/material/TextField';
-import IconButton from '@mui/material/IconButton';
-import InputLabel from '@mui/material/InputLabel';
-import InputAdornment from '@mui/material/InputAdornment';
 import FormControl from '@mui/material/FormControl';
-import Visibility from '@mui/icons-material/Visibility';
-import VisibilityOff from '@mui/icons-material/VisibilityOff';
 import { validatePassword } from './../../validations/passwordValidation';
+import SimplePasswordField from "../../components/password-field/SimplePasswordField";
 
 const Login = () => {
-
-    const navigate = useNavigate();
 
     const [password, setPassword] = useState("");
     const [passwordError, setPasswordError] = useState("");
     const [isPasswordValid, setIsPasswordValid] = useState(false);
 
-    const [showPassword, setShowPassword] = React.useState(false);
-    const handleClickShowPassword = () => setShowPassword((show) => !show);
-    const handleMouseDownPassword = (event) => {
-        event.preventDefault();
-    };
 
     const handlePasswordChange = (e) => {
         setPassword(e.target.value);
@@ -57,35 +45,9 @@ const Login = () => {
                     <TextField onChange={handlePasswordChange} id="outlined-textarea" name="email" label="E-mail | Usuário" placeholder="Endereço de e-mail ou nome de usuário" required />
                 </FormControl>
             </div>
-            <div id="field-password" className="field">
-                <FormControl required fullWidth>
-                    <InputLabel htmlFor="outlined-adornment-password" >Senha</InputLabel>
-                    <OutlinedInput
-                        id="outlined-adornment-password"
-                        placeholder="Senha deve ter no mínimo 6 caracteres"
-                        type={showPassword ? 'text' : 'password'}
-                        name="password"
-                        onChange={handlePasswordChange}
-                        endAdornment={
-                            <InputAdornment position="end">
-                                <IconButton
-                                    aria-label="toggle password visibility"
-                                    onClick={handleClickShowPassword}
-                                    onMouseDown={handleMouseDownPassword}
-                                    edge="end"
-                                >
-                                    {showPassword ? <VisibilityOff /> : <Visibility />}
-                                </IconButton>
-                            </InputAdornment>
-                        }
-                        label="Senha"
-                    />
-                    <div className="error-container">
-                            {passwordError && <small className="p-error">{passwordError}</small>}
-                        </div>
-                </FormControl>
-            </div>
 
+            <SimplePasswordField/>
+        
             <div className="flex align-items-center justify-content-between mb-6">
                 <div className="flex align-items-center">
                 </div>

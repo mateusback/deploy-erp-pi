@@ -34,7 +34,7 @@ const Recover = () => {
             </div>
             <div className="flex align-items-center justify-content-center mt-5">
                 <div className="mr-2">
-                    <Button className="w-full btn-login" icon="pi pi-envelope" iconPos="left" label="Enviar e-mail de recuperação" disabled={isButtonDisabled} />
+                    <Button className="w-full btn-login" icon="pi pi-envelope" iconPos="left" label="Enviar e-mail de recuperação" disabled={isButtonDisabled} outlined />
                 </div>
                 <Button icon="pi pi-times" severity="secondary" onClick={() => window.location.href = '/'} tooltip="Cancelar" tooltipOptions={{ position: 'right' }} />
             </div>
