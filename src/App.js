@@ -1,19 +1,20 @@
 import './App.css';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import Login from './pages/login/Login';
-import Header from './components/header/Header';
-import Footer from './components/footer/Footer';
+import LoginLayout from './components/layout/LoginLayout';
+import Change from './pages/change-password/Change';
+import Recover from './pages/recover-password/Recover';
 
 function App() {
   return (
     <>
-      <Header />
       <BrowserRouter>
         <Routes>
-          <Route path='/' Component={Login}></Route>
+          <Route path='/' element={<LoginLayout><Login /></LoginLayout>} />
+         <Route path='/change-password' element={<LoginLayout><Change /></LoginLayout>} />
+          <Route path='/recover-password' element={<LoginLayout><Recover /></LoginLayout>} />
         </Routes>
       </BrowserRouter>
-      <Footer />
     </>
   );
 }
