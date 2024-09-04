@@ -10,8 +10,6 @@ const Footer = ({ isSidebarOpen }) => {
             sx={{
                 py: 2,
                 px: 3,
-                backgroundColor: (theme) =>
-                    theme.palette.mode === 'light' ? theme.palette.grey[200] : theme.palette.grey[800],
                 textAlign: 'center',
                 marginLeft: isSidebarOpen ? '240px' : '60px',
                 width: isSidebarOpen ? 'calc(100% - 240px)' : 'calc(100% - 60px)',

@@ -1,3 +1,62 @@
-.teste{
-    background-color: #000;
+.Drawer {
+    width: 240px;
+    flex-shrink: 0;
+
+}
+
+.Drawer .MuiDrawer-paper {
+    width: 240px;
+    border-right: none;
+    box-sizing: border-box;
+    transition: width 0.3s;
+    border-right: none;
+    background-color: rgb(247, 225, 232) !important;
+}
+
+.Drawer.closed {
+    width: 70px !important;
+}
+
+/* MINI SIDEBAR */
+.Drawer.closed .MuiDrawer-paper {
+    width: 85px;
+}
+
+.logo-container {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 8px;
+    padding: 0 16px;
+}
+
+.logo-container.closed {
+    justify-content: center;
+    padding: 0;
+}
+
+.logo {
+    width: 60px;
+    transition: width 0.3s;
+}
+
+.logo.closed {
+    width: 70px;
+}
+
+.title {
+    color: #f6a9c3;
+    font-size: 1.1rem !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.sidebar-header {
+    color: #282828 !important;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 0.5rem;
+    text-transform: uppercase;
+    background-color: rgb(247, 225, 232) !important;
 }

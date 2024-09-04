@@ -1,5 +1,6 @@
 // Importe React
 import React from 'react';
+import { Link } from 'react-router-dom';
 //Import API MUI
 import { Drawer, ListSubheader, Typography } from '@mui/material';
 import { List } from '@mui/material';
@@ -11,67 +12,57 @@ import { Box } from '@mui/material';
 import { Info, InsertChart, Person, Settings, ShoppingCart, TableView, Wallet } from '@mui/icons-material';
 //Import interno
 import LogoSVG from '../Img/logo.svg'
+import './Sidebar.css';
 
 const Sidebar = ({ isOpen }) => {
     return (
         <Drawer
-            className={`topbar ${isOpen ? 'expanded' : 'collapsed'}`}
+            className={`Drawer ${isOpen ? '' : 'closed'}`}
             variant="permanent"
-            sx={{
-                width: isOpen ? 240 : 70,
-                flexShrink: 0,
-                '& .MuiDrawer-paper': {
-                    width: isOpen ? 240 : 70,
-                    boxSizing: 'border-box',
-                    transition: 'width 0.3s',
-                },
-            }}
         >
             <Box
-                sx={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: isOpen ? 'flex-start' : 'center',
-                    margin: '8px',
-                    padding: isOpen ? '0 16px' : '0',
-                }}
+                className={`logo-container ${isOpen ? '' : 'closed'}`}
             >
-                <img src={LogoSVG} alt="Logo" style={{ width: isOpen ? '40px' : '30px', transition: 'width 0.3s' }} />
+                <img className={`logo ${isOpen ? '' : 'closed'}`} src={LogoSVG} alt="Logo" />
                 {isOpen && (
-                    <Typography variant="h6" sx={{ marginLeft: '25px', color: '#f6a9c3' }}>
+                    <Typography className='title' variant="h6">
                         snacktime
                     </Typography>
                 )}
             </Box>
             <List
-                sx={{ width: '100%', maxWidth: 370, bgcolor: 'background.paper' }}
+                sx={{ width: '100%', maxWidth: 370 }}
                 component="nav"
                 aria-labelledby="nested-list-subheader"
                 subheader={
-                    <ListSubheader component="div" id="nested-list-subheader">
+                    <ListSubheader className='sidebar-header' component="div" id="nested-list-subheader">
                         Menu
                     </ListSubheader>
                 }
             >
-                <ListItem button>
+                {/* Primeiro botão */}
+                <ListItem button component={Link} to="/visao-geral">
                     <ListItemIcon>
                         <InsertChart />
                     </ListItemIcon>
                     {isOpen && <ListItemText primary="Visão Geral" />}
                 </ListItem>
-                <ListItem button>
+                {/* Segundo botão */}
+                <ListItem button component={Link} to="/balcao">
                     <ListItemIcon>
                         <ShoppingCart />
                     </ListItemIcon>
                     {isOpen && <ListItemText primary="Balcão" />}
                 </ListItem>
-                <ListItem button>
+                {/* Terceiro botão */}
+                <ListItem button component={Link} to="/comandas">
                     <ListItemIcon>
                         <TableView />
                     </ListItemIcon>
-                    {isOpen && <ListItemText className='teste' primary="Comandas" />}
+                    {isOpen && <ListItemText primary="Comandas" />}
                 </ListItem>
-                <ListItem button>
+                {/* Quarto botão */}
+                <ListItem button component={Link} to="/carteiras">
                     <ListItemIcon>
                         <Wallet />
                     </ListItemIcon>
@@ -79,11 +70,11 @@ const Sidebar = ({ isOpen }) => {
                 </ListItem>
             </List>
             <List
-                sx={{ width: '100%', maxWidth: 370, bgcolor: 'background.paper' }}
+                sx={{ width: '100%', maxWidth: 370 }}
                 component="nav"
                 aria-labelledby="nested-list-subheader"
                 subheader={
-                    <ListSubheader component="div" id="nested-list-subheader">
+                    <ListSubheader className='sidebar-header' component="div" id="nested-list-subheader">
                         Outros
                     </ListSubheader>
                 }
@@ -107,7 +98,7 @@ const Sidebar = ({ isOpen }) => {
                     {isOpen && <ListItemText primary="Ajuda" />}
                 </ListItem>
             </List>
-        </Drawer>
+        </Drawer >
     );
 }
 

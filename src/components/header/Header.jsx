@@ -1,8 +1,8 @@
 import React from 'react';
 import './Header.css';
-import { AppBar, Toolbar, Typography, IconButton, Avatar } from '@mui/material';
-import { Notifications, Menu } from '@mui/icons-material';
-import { deepOrange } from '@mui/material/colors';
+import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
+import { Menu } from '@mui/icons-material';
+import ButtonProfile from './ProfileButton';
 
 const Header = ({ isSidebarOpen, toggleSidebar }) => {
     return (
@@ -16,7 +16,7 @@ const Header = ({ isSidebarOpen, toggleSidebar }) => {
                     edge="start"
                     color="inherit"
                     onClick={toggleSidebar}
-                    sx={{ marginRight: '16px' }}
+                    sx={{ marginRight: '20px', display: { sm: 'block', xs: 'block' }, marginLeft: { sm: '0', xs: '0' } }}
                 >
                     <Menu />
                 </IconButton>
@@ -24,16 +24,12 @@ const Header = ({ isSidebarOpen, toggleSidebar }) => {
                     Cardápio
                 </Typography>
 
-
-                <IconButton color="inherit">
-                    <Avatar sx={{ bgcolor: deepOrange[500] }}>N</Avatar>
-                </IconButton>
-                <IconButton color="inherit">
-                    <Notifications sx={{ fontSize: 20 }} />
-                </IconButton>
+                <ButtonProfile />
             </Toolbar>
         </AppBar>
     );
 };
 
 export default Header;
+
+
