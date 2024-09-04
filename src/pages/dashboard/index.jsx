@@ -1,13 +1,11 @@
 import * as React from 'react';
 import Typography from '@mui/material/Typography';
 import { Card, CardContent, Grid } from '@mui/material';
-import { CheckCircleOutline, HourglassEmpty, ErrorOutline } from '@mui/icons-material';
 
 const StatusCard = ({ icon: Icon, title, description }) => {
     return (
         <Card sx={{ minWidth: 275, textAlign: 'center' }}>
             <CardContent>
-                <Icon style={{ fontSize: 50, marginBottom: 10 }} color="primary" />
                 <Typography variant="h5" component="div">
                     {title}
                 </Typography>
@@ -26,27 +24,23 @@ const IndexDashboard = () => {
             <Grid container spacing={3}>
                 <Grid item xs={12} md={4}>
                     <StatusCard
-                        icon={CheckCircleOutline}
-                        title="Success"
+                        title="Teste Titulo"
                         description="Everything is working perfectly."
                     />
                 </Grid>
                 <Grid item xs={12} md={4}>
                     <StatusCard
-                        icon={HourglassEmpty}
-                        title="Pending"
+                        title="Teste Titulo"
                         description="Action is in progress."
                     />
                 </Grid>
                 <Grid item xs={12} md={4}>
                     <StatusCard
-                        icon={ErrorOutline}
-                        title="Error"
+                        title="Teste Titulo"
                         description="Something went wrong."
                     />
                 </Grid>
             </Grid>
-
         </>
     );
 }

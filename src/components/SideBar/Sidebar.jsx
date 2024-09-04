@@ -31,6 +31,7 @@ const Sidebar = ({ isOpen }) => {
                 )}
             </Box>
             <List
+                className='sidebar-list'
                 sx={{ width: '100%', maxWidth: 370 }}
                 component="nav"
                 aria-labelledby="nested-list-subheader"
@@ -41,58 +42,56 @@ const Sidebar = ({ isOpen }) => {
                 }
             >
                 {/* Primeiro botão */}
-                <ListItem button component={Link} to="/visao-geral">
-                    <ListItemIcon>
+                <ListItem button className='list-item' component={Link} to="/visao-geral">
+                    <ListItemIcon className='list-item-icon'>
                         <InsertChart />
                     </ListItemIcon>
                     {isOpen && <ListItemText primary="Visão Geral" />}
                 </ListItem>
                 {/* Segundo botão */}
-                <ListItem button component={Link} to="/balcao">
-                    <ListItemIcon>
+                <ListItem button className='list-item' component={Link} to="/balcao">
+                    <ListItemIcon className='list-item-icon'>
                         <ShoppingCart />
                     </ListItemIcon>
                     {isOpen && <ListItemText primary="Balcão" />}
                 </ListItem>
                 {/* Terceiro botão */}
-                <ListItem button component={Link} to="/comandas">
-                    <ListItemIcon>
+                <ListItem button className='list-item' component={Link} to="/comandas">
+                    <ListItemIcon className='list-item-icon'>
                         <TableView />
                     </ListItemIcon>
                     {isOpen && <ListItemText primary="Comandas" />}
                 </ListItem>
                 {/* Quarto botão */}
-                <ListItem button component={Link} to="/carteiras">
-                    <ListItemIcon>
+                <ListItem button className='list-item' component={Link} to="/carteiras">
+                    <ListItemIcon className='list-item-icon'>
                         <Wallet />
                     </ListItemIcon>
                     {isOpen && <ListItemText primary="Carteiras" />}
                 </ListItem>
-            </List>
-            <List
-                sx={{ width: '100%', maxWidth: 370 }}
-                component="nav"
-                aria-labelledby="nested-list-subheader"
-                subheader={
-                    <ListSubheader className='sidebar-header' component="div" id="nested-list-subheader">
-                        Outros
-                    </ListSubheader>
-                }
-            >
-                <ListItem button>
-                    <ListItemIcon>
+
+                {/* Separador */}
+                <ListSubheader className='sidebar-header' component="div" id="nested-list-subheader">
+                    Outros
+                </ListSubheader>
+
+                {/* Config */}
+                <ListItem button className='list-item'>
+                    <ListItemIcon className='list-item-icon'>
                         <Settings />
                     </ListItemIcon>
                     {isOpen && <ListItemText primary="Configurações" />}
                 </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
+                {/* Clientes */}
+                <ListItem button className='list-item'>
+                    <ListItemIcon className='list-item-icon'>
                         <Person />
                     </ListItemIcon>
                     {isOpen && <ListItemText primary="Clientes" />}
                 </ListItem>
-                <ListItem button>
-                    <ListItemIcon>
+                {/* Ajuda */}
+                <ListItem button className='list-item'>
+                    <ListItemIcon className='list-item-icon'>
                         <Info />
                     </ListItemIcon>
                     {isOpen && <ListItemText primary="Ajuda" />}
