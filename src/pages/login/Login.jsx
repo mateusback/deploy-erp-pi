@@ -33,7 +33,7 @@ const Login = () => {
             setIsPasswordValid(false);
         }
     };
-    
+
     return (
         <Card className="shadow-5 border-round md:w-30rem">
             <div className="text-center mb-5">
@@ -46,8 +46,8 @@ const Login = () => {
                 </FormControl>
             </div>
 
-            <SimplePasswordField/>
-        
+            <SimplePasswordField />
+
             <div className="flex align-items-center justify-content-between mb-6">
                 <div className="flex align-items-center">
                 </div>
