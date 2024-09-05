@@ -1,14 +1,15 @@
-import * as React from 'react';
-import Box from '@mui/material/Box';
+import React from 'react';
 import Avatar from '@mui/material/Avatar';
+import ButtonBase from '@mui/material/ButtonBase';
+import Stack from '@mui/material/Stack';
+import Typography from '@mui/material/Typography';
+import { Box } from '@mui/material';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import Divider from '@mui/material/Divider';
-import IconButton from '@mui/material/IconButton';
-import Tooltip from '@mui/material/Tooltip';
-import Settings from '@mui/icons-material/Settings';
-import Logout from '@mui/icons-material/Logout';
+import ListItemIcon from '@mui/material/ListItemIcon';
+import { Settings, Logout } from '@mui/icons-material';
+
 
 const ButtonProfile = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -19,23 +20,28 @@ const ButtonProfile = () => {
     const handleClose = () => {
         setAnchorEl(null);
     };
+
     return (
-        <React.Fragment>
+        <>
             <Box sx={{ display: 'flow', alignItems: 'center', textAlign: 'center' }}>
-                <Tooltip title="Configurações Conta">
-                    <IconButton
-                        onClick={handleClick}
-                        size="small"
-                        edge="end"
-                        sx={{ ml: 2 }}
-                        aria-controls={open ? 'account-menu' : undefined}
-                        aria-haspopup="true"
-                        aria-expanded={open ? 'true' : undefined}
-                    >
-                        <p className='profile-name'></p>
-                        <Avatar sx={{ width: 32, height: 32 }}></Avatar>
-                    </IconButton>
-                </Tooltip>
+                <ButtonBase
+                    onClick={handleClick}
+                    sx={{
+                        p: 0.25,
+                        borderRadius: 1,
+                        '&:hover': { bgcolor: 'secondary.lighter' },
+                        '&:focus-visible': { outline: `2px solid`, outlineOffset: 2 }
+                    }}
+                    aria-label="open profile"
+                    aria-haspopup="true"
+                >
+                    <Stack direction="row" spacing={1.25} alignItems="center" sx={{ p: 0.5 }}>
+                        <Typography variant="subtitle1" sx={{ textTransform: 'capitalize' }}>
+                            Luisao
+                        </Typography>
+                        <Avatar alt="profile user" src={""} size="sm" />
+                    </Stack>
+                </ButtonBase>
             </Box>
             <Menu
                 anchorEl={anchorEl}
@@ -92,7 +98,7 @@ const ButtonProfile = () => {
                     Sair
                 </MenuItem>
             </Menu>
-        </React.Fragment>
+        </>
     );
 }
 

@@ -1,8 +1,14 @@
 import React from 'react';
-import './Header.css';
-import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
+// IMPORT MUI COMPONENTS
+import { AppBar } from '@mui/material';
+import { Toolbar } from '@mui/material';
+import { IconButton } from '@mui/material';
+// IMPORT MUI ICONS
 import { Menu } from '@mui/icons-material';
-import ButtonProfile from './ProfileButton';
+// IMPORT INTERNAL FILES
+import ButtonProfile from './HeaderContent/ProfileButton';
+import './Header.css';
+import Search from './HeaderContent/Search';
 
 const Header = ({ isSidebarOpen, toggleSidebar }) => {
     return (
@@ -20,11 +26,10 @@ const Header = ({ isSidebarOpen, toggleSidebar }) => {
                 >
                     <Menu />
                 </IconButton>
-                <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
-                    Cardápio
-                </Typography>
 
+                <Search />
                 <ButtonProfile />
+
             </Toolbar>
         </AppBar>
     );

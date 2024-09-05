@@ -1,17 +1,15 @@
 import React from "react";
-import Box from "@mui/material/Box";
-import Header from "./header/Header";
-import Sidebar from "./SideBar/Sidebar";
-
 import { useState } from 'react';
+// IMPORT MUI COMPONENTS
+import Box from "@mui/material/Box";
 import { Container, Toolbar } from '@mui/material';
-import { Typography } from '@mui/material';
 import { CssBaseline } from "@mui/material";
-import Footer from "./footer/Footer";
-import IndexDashboard from "../pages/dashboard";
+import Footer from "../footer/Footer";
+// IMPORT INTERNAL FILES
+import Header from "../header/Header";
+import Sidebar from "../drawer/Sidebar";
 
-
-const DefaultLayout = ({ Children }) => {
+const DashboardLayout = ({ children }) => {
     const [isSidebarOpen, setSidebarOpen] = useState(true);
 
     const toggleSidebar = () => {
@@ -29,9 +27,7 @@ const DefaultLayout = ({ Children }) => {
             >
                 <Toolbar />
                 <Container>
-                    <Typography paragraph>
-                        <IndexDashboard />
-                    </Typography>
+                    {children}
                 </Container>
             </Box>
             <Footer />
@@ -39,4 +35,4 @@ const DefaultLayout = ({ Children }) => {
     );
 }
 
-export default DefaultLayout;
+export default DashboardLayout;

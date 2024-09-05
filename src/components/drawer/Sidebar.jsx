@@ -1,9 +1,12 @@
 import React from 'react';
-import { Drawer, Typography } from '@mui/material';
+// IMPORT MUI COMPONENTS
+import { Drawer } from '@mui/material';
+import { Typography } from '@mui/material';
 import { Box } from '@mui/material';
-import LogoSVG from '../Img/logo.svg'
+// IMPORT INTERNAL FILES
 import './Sidebar.css';
-import Navigation from './Navigation';
+import LogoSVG from '../Img/logo.svg'
+import Navigation from './DrawerContent/Navigation';
 
 const Sidebar = ({ isOpen }) => {
     return (

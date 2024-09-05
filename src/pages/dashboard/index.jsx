@@ -1,8 +1,8 @@
-import * as React from 'react';
-import Typography from '@mui/material/Typography';
+import React from 'react';
+import { Typography } from '@mui/material';
 import { Card, CardContent, Grid } from '@mui/material';
 
-const StatusCard = ({ icon: Icon, title, description }) => {
+const StatusCard = ({ title, description }) => {
     return (
         <Card sx={{ minWidth: 275, textAlign: 'center' }}>
             <CardContent>
@@ -17,7 +17,7 @@ const StatusCard = ({ icon: Icon, title, description }) => {
     );
 };
 
-const IndexDashboard = () => {
+const Index = () => {
 
     return (
         <>
@@ -45,4 +45,4 @@ const IndexDashboard = () => {
     );
 }
 
-export default IndexDashboard;
+export default Index;
