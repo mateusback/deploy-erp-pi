@@ -6,12 +6,26 @@ import FormControl from '@mui/material/FormControl';
 import PasswordField from '../../components/password-validations-field/PasswordInput';
 import ConfirmPasswordField from '../../components/confirm-password-field/ConfirmPasswordInput';
 import './Change.css';
+import { changePassword } from '../../services/LoginService';
+
 
 const Change = () => {
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState('');
 
     const handlePasswordChange = (newPassword) => {
         setPassword(newPassword);
+    };
+
+    const handleChangePasswordClick = async () => {
+        try {
+            const data = { email, password };
+            const response = await changePassword(data);
+            window.open("/");
+        } catch (error) {
+            console.error("Erro ao fazer requisição:", error);
+
+        }
     };
 
     return (
@@ -35,7 +49,7 @@ const Change = () => {
 
                 <div className="flex align-items-center justify-content-center mt-5">
                     <div className="mr-2">
-                        <Button className="w-full btn-login" icon="pi pi-envelope" iconPos="left" label="Alterar senha" outlined />
+                        <Button className="w-full btn-login" onClick={handleChangePasswordClick} icon="pi pi-envelope" iconPos="left" label="Alterar senha" outlined />
                     </div>
                     <Button icon="pi pi-times" className="p-button-secondary" onClick={() => window.location.href = '/'} tooltip="Cancelar" tooltipOptions={{ position: 'right' }} />
                 </div>
