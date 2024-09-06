@@ -19,7 +19,7 @@ const Footer = ({ isSidebarOpen }) => {
             <Typography variant="body2" color="text.secondary">
                 {'Copyright © '}
                 <Link color="inherit" href="https://github.com/CS-PI-2024-The-Rapazes">
-                    The Rapazes
+                   The Rapazes.
                 </Link>{' '}
                 {new Date().getFullYear()}
                 {'.'}

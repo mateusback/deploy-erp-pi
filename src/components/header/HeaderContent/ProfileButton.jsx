@@ -25,6 +25,7 @@ const ButtonProfile = () => {
         <>
             <Box sx={{ display: 'flow', alignItems: 'center', textAlign: 'center' }}>
                 <ButtonBase
+                    className="profile-button"
                     onClick={handleClick}
                     sx={{
                         p: 0.25,

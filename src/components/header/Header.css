@@ -1,8 +1,8 @@
 .topbar {
     background-color: white !important;
-    color: black !important;
+    color: #303030 !important;
     transition: margin-left 0.3s, width 0.3s;
-    border-bottom: solid 1px #e0e0e0 !important;
+    border-bottom: solid 1px #f0f0f0 !important;
     box-shadow: none !important;
     z-index: 99999;
 }
