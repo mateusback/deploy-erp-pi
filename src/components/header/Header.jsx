@@ -1,8 +1,15 @@
 import React from 'react';
+// IMPORT MUI COMPONENTS
+import { AppBar } from '@mui/material';
+import { Toolbar } from '@mui/material';
+import { IconButton } from '@mui/material';
+// IMPORT MUI ICONS
+import MenuOpenIcon from '@mui/icons-material/MenuOpen';
+// IMPORT INTERNAL FILES
+import ButtonProfile from './HeaderContent/ProfileButton';
 import './Header.css';
-import { AppBar, Toolbar, Typography, IconButton } from '@mui/material';
-import { Menu } from '@mui/icons-material';
-import ButtonProfile from './ProfileButton';
+import Search from './HeaderContent/Search';
+import Notification from './HeaderContent/Notification';
 
 const Header = ({ isSidebarOpen, toggleSidebar }) => {
     return (
@@ -11,19 +18,17 @@ const Header = ({ isSidebarOpen, toggleSidebar }) => {
             className={`topbar ${isSidebarOpen ? 'expanded' : 'collapsed'}`}
         >
             <Toolbar>
-
                 <IconButton
+                    className='toggle-icon'
                     edge="start"
                     color="inherit"
                     onClick={toggleSidebar}
-                    sx={{ marginRight: '20px', display: { sm: 'block', xs: 'block' }, marginLeft: { sm: '0', xs: '0' } }}
+                    sx={{ marginRight: '10px', marginLeft: '0px' }}
                 >
-                    <Menu />
+                    <MenuOpenIcon />
                 </IconButton>
-                <Typography variant="h6" noWrap sx={{ flexGrow: 1 }}>
-                    Cardápio
-                </Typography>
-
+                <Search />
+                <Notification />
                 <ButtonProfile />
             </Toolbar>
         </AppBar>
