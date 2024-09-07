@@ -19,6 +19,7 @@ const Header = ({ isSidebarOpen, toggleSidebar }) => {
         >
             <Toolbar>
                 <IconButton
+                    className='toggle-icon'
                     edge="start"
                     color="inherit"
                     onClick={toggleSidebar}
@@ -27,8 +28,8 @@ const Header = ({ isSidebarOpen, toggleSidebar }) => {
                     <MenuOpenIcon />
                 </IconButton>
                 <Search />
-                <Notification sx={{ mr: 1500 }} />
-                <ButtonProfile sx={{ marginLeft: '150px' }} />
+                <Notification />
+                <ButtonProfile />
             </Toolbar>
         </AppBar>
     );

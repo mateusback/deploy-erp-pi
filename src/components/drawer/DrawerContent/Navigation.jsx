@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 // IMPORT MUI COMPONENTS
-import { List } from '@mui/material';
+import { List, Tooltip } from '@mui/material';
 import { ListItem } from '@mui/material';
 import { ListItemIcon } from '@mui/material';
 import { ListItemText } from '@mui/material';
@@ -32,20 +32,22 @@ const Navigation = ({ isOpen }) => {
         setSelectedIndex(index);
     };
 
+
     const renderListItems = (items, offset = 0) =>
         items.map((item, index) => (
-            <ListItem
-                button
-                key={item.text}
-                className='list-item'
-                component={Link}
-                to={item.path}
-                selected={selectedIndex === index + offset}
-                onClick={() => handleListItemClick(index + offset)}
-            >
-                <ListItemIcon className='list-item-icon'>{item.icon}</ListItemIcon>
-                {isOpen && <ListItemText primary={item.text} />}
-            </ListItem>
+            <Tooltip title={isOpen ? '' : item.text} placement="left" arrow key={item.text}>
+                <ListItem
+                    button
+                    className='list-item'
+                    component={Link}
+                    to={item.path}
+                    selected={selectedIndex === index + offset}
+                    onClick={() => handleListItemClick(index + offset)}
+                >
+                    <ListItemIcon className='list-item-icon'>{item.icon}</ListItemIcon>
+                    {isOpen && <ListItemText primary={item.text} />}
+                </ListItem>
+            </Tooltip>
         ));
 
     return (

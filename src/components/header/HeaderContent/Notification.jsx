@@ -9,7 +9,7 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 const Notification = () => {
     const [read] = useState(2);
     return (
-        <Box sx={{ flexShrink: 0, ml: 0.75 }}>
+        <Box sx={{ flexShrink: 0, ml: 0.70 }}>
             <IconButton
                 variant="light"
                 aria-label="open profile"
