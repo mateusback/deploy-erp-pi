@@ -1,11 +1,12 @@
 import "./Recover.css";
 import React from "react";
 import { useState } from "react";
-
+import LogoSvg from '../../components/Img/logo.svg';
 import { Card } from 'primereact/card';
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import { Button } from 'primereact/button';
+import "./../../index.css"
 
 const Recover = () => {
 
@@ -20,7 +21,11 @@ const Recover = () => {
     return (
         <Card className="shadow-5 border-round md:w-30rem">
             <div className="text-center mb-5">
-                <img src="" alt="logo" height={50} className="mb-3" />
+                <div className="logo-wrapper">
+                    <div className="logo-container mb-3">
+                        <img src={LogoSvg} alt="logo" />
+                    </div>
+                </div>
                 <div className="text-900 text-3xl font-medium mb-3">Recuperar Senha</div>
                 <span className="subTitle">Um e-mail sera enviado para você</span>
             </div>

@@ -5,7 +5,10 @@ import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import PasswordField from '../../components/password-validations-field/PasswordInput';
 import ConfirmPasswordField from '../../components/confirm-password-field/ConfirmPasswordInput';
+import LogoSvg from '../../components/Img/logo.svg';
 import './Change.css';
+import "./../../index.css"
+
 
 const Change = () => {
     const [password, setPassword] = useState('');
@@ -18,7 +21,11 @@ const Change = () => {
         <div className="flex align-items-center justify-content-center mt-5">
             <Card className="shadow-5 border-round md:w-30rem">
                 <div className="text-center mb-5">
-                    <img src="" alt="logo" height={50} className="mb-3" />
+                    <div className="logo-wrapper">
+                        <div className="logo-container mb-3">
+                            <img src={LogoSvg} alt="logo" />
+                        </div>
+                    </div>
                     <div className="text-900 text-3xl font-medium mb-3">Alterar Senha</div>
                     <span className="subTitle">para voltar a acessar sua conta.</span>
                 </div>

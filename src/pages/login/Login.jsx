@@ -1,4 +1,5 @@
 import "./Login.css";
+import "./../../index.css"
 import React, { useState } from "react";
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
@@ -8,12 +9,13 @@ import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import { validatePassword } from './../../validations/passwordValidation';
 import SimplePasswordField from "../../components/password-field/SimplePasswordField";
+import LogoSvg from '../../components/Img/logo.svg';
 
 const Login = () => {
 
     const [password, setPassword] = useState("");
-    const [passwordError, setPasswordError] = useState("");
-    const [isPasswordValid, setIsPasswordValid] = useState(false);
+    const [setPasswordError] = useState("");
+    const [setIsPasswordValid] = useState(false);
 
 
     const handlePasswordChange = (e) => {
@@ -22,7 +24,6 @@ const Login = () => {
 
     const handleLoginClick = () => {
         const errorMessage = validatePassword(password);
-        console.log(errorMessage);
         setPasswordError(errorMessage);
         const isValid = errorMessage === "";
 
@@ -37,7 +38,11 @@ const Login = () => {
     return (
         <Card className="shadow-5 border-round md:w-30rem">
             <div className="text-center mb-5">
-                <img src="" alt="logo" height={50} className="mb-3" />
+                <div className="logo-wrapper">
+                    <div className="logo-container mb-3">
+                        <img src={LogoSvg} alt="logo" />
+                    </div>
+                </div>
                 <div className="text-900 text-3xl font-medium mb-3">Entrar</div>
             </div>
             <div id="field-name" className="field">
