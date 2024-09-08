@@ -9,10 +9,11 @@ import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
 import { validatePassword } from './../../validations/passwordValidation';
 import SimplePasswordField from "../../components/password-field/SimplePasswordField";
+import { verifyMail } from '../../services/LoginService';
 import LogoSvg from '../../components/Img/logo.svg';
 
 const Login = () => {
-
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [setPasswordError] = useState("");
     const [setIsPasswordValid] = useState(false);
@@ -22,14 +23,26 @@ const Login = () => {
         setPassword(e.target.value);
     };
 
-    const handleLoginClick = () => {
-        const errorMessage = validatePassword(password);
-        setPasswordError(errorMessage);
-        const isValid = errorMessage === "";
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
+    };
+
+    const handleLoginClick = async () => {
+        //const errorMessage = validatePassword(password);
+        //console.log(errorMessage);
+        //setPasswordError(errorMessage);
+        const isValid = true;
 
         if (isValid) {
             setIsPasswordValid(true);
-            window.open("/");
+            try {
+                const data = { email, password };
+                const response = await verifyMail(data.email);
+                window.open("/");
+            } catch (error) {
+                console.error("Erro ao fazer requisição:", error);
+
+            }
         } else {
             setIsPasswordValid(false);
         }
@@ -47,21 +60,38 @@ const Login = () => {
             </div>
             <div id="field-name" className="field">
                 <FormControl fullWidth>
-                    <TextField onChange={handlePasswordChange} id="outlined-textarea" name="email" label="E-mail | Usuário" placeholder="Endereço de e-mail ou nome de usuário" required />
+                    <TextField
+                        onChange={handleEmailChange}
+                        id="outlined-textarea"
+                        name="email"
+                        label="E-mail | Usuário"
+                        placeholder="Endereço de e-mail ou nome de usuário"
+                        required
+                    />
                 </FormControl>
             </div>
 
-            <SimplePasswordField />
+            <SimplePasswordField
+                onChange={handlePasswordChange}
+            />
 
             <div className="flex align-items-center justify-content-between mb-6">
                 <div className="flex align-items-center">
                 </div>
-                <Link className="font-medium ml-2 no-underline text-blue-500 text-right cursor-pointer" to="/recover-password" target="_blank">Esqueceu a senha?</Link>
+                <Link className="font-medFium ml-2 no-underline text-blue-500 text-right cursor-pointer" to="/recover-password" target="_blank">Esqueceu a senha?</Link>
             </div>
 
             <div className="mt-5 mb-5">
                 <div className="col">
-                    <Button onClick={handleLoginClick} className="w-full btn-login" label="Continuar" icon="pi pi-user" iconPos="left" severity="secondary" outlined />
+                    <Button
+                        onClick={handleLoginClick}
+                        className="w-full btn-login"
+                        label="Continuar"
+                        icon="pi pi-user"
+                        iconPos="left"
+                        severity="secondary"
+                        outlined
+                    />
                 </div>
             </div>
         </Card>

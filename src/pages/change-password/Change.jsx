@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
 import TextField from '@mui/material/TextField';
@@ -9,12 +9,45 @@ import LogoSvg from '../../components/Img/logo.svg';
 import './Change.css';
 import "./../../index.css"
 
+import { changePassword } from '../../services/LoginService';
+import { useLocation } from "react-router-dom";
+
 
 const Change = () => {
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState('');
+    const [code, setCode] = useState('');
+    const location = useLocation();
+
+    useEffect(() => {
+        const queryParams = new URLSearchParams(location.search);
+        const emailFromQuery = queryParams.get('email');
+        const codeFromQuery = queryParams.get('code');
+
+        if (emailFromQuery) {
+            setEmail(emailFromQuery);
+        }
+        if (codeFromQuery) {
+            setCode(codeFromQuery);
+        }
+
+    }, [location]);
+
+
 
     const handlePasswordChange = (newPassword) => {
         setPassword(newPassword);
+    };
+
+    const handleChangePasswordClick = async () => {
+        try {
+            const data = { email, password, code };
+            const response = await changePassword(data);
+            window.open("/");
+        } catch (error) {
+            console.error("Erro ao fazer requisição:", error);
+
+        }
     };
 
     return (
@@ -31,7 +64,7 @@ const Change = () => {
                 </div>
                 <div id="field-mail" className="field">
                     <FormControl fullWidth>
-                        <TextField id="outlined-textarea" label="emailTeste@gmail.com" placeholder="Endereço de e-mail" disabled />
+                        <TextField id="outlined-textarea" label={email} placeholder="Endereço de e-mail" disabled />
                         <p className="text-500 text-sm ml-2 mt-1">E-mail não pode ser alterado</p>
                     </FormControl>
                 </div>
@@ -42,7 +75,7 @@ const Change = () => {
 
                 <div className="flex align-items-center justify-content-center mt-5">
                     <div className="mr-2">
-                        <Button className="w-full btn-login" icon="pi pi-envelope" iconPos="left" label="Alterar senha" outlined />
+                        <Button className="w-full btn-login" onClick={handleChangePasswordClick} icon="pi pi-envelope" iconPos="left" label="Alterar senha" outlined />
                     </div>
                     <Button icon="pi pi-times" className="p-button-secondary" onClick={() => window.location.href = '/'} tooltip="Cancelar" tooltipOptions={{ position: 'right' }} />
                 </div>
