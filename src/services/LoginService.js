@@ -14,7 +14,7 @@ export async function getFunction() {
 
 export async function verifyMail(data) {
     try {
-        const response = await axios.post(`${API_URL}/${URL_CONTROLLER}verify-mail/${data}`);
+        const response = await axios.post(`${API_URL}/${URL_CONTROLLER}verify-mail`, data);
         return response.data;
     } catch (error) {
         throw error;

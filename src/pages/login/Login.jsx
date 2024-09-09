@@ -7,7 +7,6 @@ import { Link } from 'react-router-dom';
 
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
-import { validatePassword } from './../../validations/passwordValidation';
 import SimplePasswordField from "../../components/password-field/SimplePasswordField";
 import { verifyMail } from '../../services/LoginService';
 import LogoSvg from '../../components/Img/logo.svg';
@@ -28,9 +27,6 @@ const Login = () => {
     };
 
     const handleLoginClick = async () => {
-        //const errorMessage = validatePassword(password);
-        //console.log(errorMessage);
-        //setPasswordError(errorMessage);
         const isValid = true;
 
         if (isValid) {
@@ -41,7 +37,6 @@ const Login = () => {
                 window.open("/");
             } catch (error) {
                 console.error("Erro ao fazer requisição:", error);
-
             }
         } else {
             setIsPasswordValid(false);
@@ -71,10 +66,8 @@ const Login = () => {
                 </FormControl>
             </div>
 
-            <SimplePasswordField
-                onChange={handlePasswordChange}
-            />
-
+            <SimplePasswordField/>
+        
             <div className="flex align-items-center justify-content-between mb-6">
                 <div className="flex align-items-center">
                 </div>
