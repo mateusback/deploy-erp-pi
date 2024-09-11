@@ -23,8 +23,7 @@ const ButtonProfile = () => {
         setAnchorEl(null);
     };
     const handleLogout = () => {
-        console.log('Logout');
-        navigate(-1);
+        navigate.apply('/');
     };
 
     return (
