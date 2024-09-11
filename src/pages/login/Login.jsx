@@ -1,66 +1,96 @@
 import "./Login.css";
+import "./../../index.css";
 import React, { useState } from "react";
 import { Card } from 'primereact/card';
 import { Button } from 'primereact/button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 import TextField from '@mui/material/TextField';
 import FormControl from '@mui/material/FormControl';
-import { validatePassword } from './../../validations/passwordValidation';
 import SimplePasswordField from "../../components/password-field/SimplePasswordField";
+import { authenticate } from '../../services/LoginService';
+import LogoSvg from '../../components/Img/logo.svg';
+import { toast } from 'react-toastify';
 
 const Login = () => {
-
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-    const [passwordError, setPasswordError] = useState("");
-    const [isPasswordValid, setIsPasswordValid] = useState(false);
+    const navigate = useNavigate();
 
-
-    const handlePasswordChange = (e) => {
-        setPassword(e.target.value);
+    const handleEmailChange = (e) => {
+        setEmail(e.target.value);
     };
 
-    const handleLoginClick = () => {
-        const errorMessage = validatePassword(password);
-        console.log(errorMessage);
-        setPasswordError(errorMessage);
-        const isValid = errorMessage === "";
+    const handlePasswordChange = (newPassword) => {
+        setPassword(newPassword);
+    };
 
-        if (isValid) {
-            setIsPasswordValid(true);
-            window.open("/");
-        } else {
-            setIsPasswordValid(false);
+    const handleLoginClick = async () => {
+        try {
+            const data = { email, password };
+            await authenticate(data);
+            navigate("/dashboard");
+        } catch (error) {
+            toast.error("Email e/ou senha inválido(s).");
+            console.error("Erro ao fazer requisição:", error);
         }
+    };
+
+    const handleCadastreClick = () => {
+        navigate("/cadastre");
     };
 
     return (
         <Card className="shadow-5 border-round md:w-30rem">
             <div className="text-center mb-5">
-                <img src="" alt="logo" height={50} className="mb-3" />
+                <div className="logo-wrapper">
+                    <div className="logo-container mb-3">
+                        <img src={LogoSvg} alt="logo" />
+                    </div>
+                </div>
                 <div className="text-900 text-3xl font-medium mb-3">Entrar</div>
             </div>
-            <div id="field-name" className="field">
+            <div id="field-email" className="field">
                 <FormControl fullWidth>
-                    <TextField onChange={handlePasswordChange} id="outlined-textarea" name="email" label="E-mail | Usuário" placeholder="Endereço de e-mail ou nome de usuário" required />
+                    <TextField
+                        onChange={handleEmailChange}
+                        id="outlined-email"
+                        name="email"
+                        label="E-mail | Usuário"
+                        placeholder="Endereço de e-mail ou nome de usuário"
+                        required
+                    />
                 </FormControl>
             </div>
 
-            <SimplePasswordField />
+            <SimplePasswordField onChange={handlePasswordChange} />
 
             <div className="flex align-items-center justify-content-between mb-6">
-                <div className="flex align-items-center">
-                </div>
-                <Link className="font-medium ml-2 no-underline text-blue-500 text-right cursor-pointer" to="/recover-password" target="_blank">Esqueceu a senha?</Link>
+                <Link className="font-medFium ml-2 no-underline text-blue-500 text-right cursor-pointer" to="/recover-password" target="_blank">Esqueceu a senha?</Link>
             </div>
 
-            <div className="mt-5 mb-5">
-                <div className="col">
-                    <Button onClick={handleLoginClick} className="w-full btn-login" label="Continuar" icon="pi pi-user" iconPos="left" severity="secondary" outlined />
-                </div>
+            <div className="mt-5 mb-5 flex justify-content-between">
+                <Button
+                    onClick={handleLoginClick}
+                    className="w-full btn-login mr-2"
+                    label="Continuar"
+                    icon="pi pi-user"
+                    iconPos="left"
+                    severity="secondary"
+                    outlined
+                />
+                <Button
+                    onClick={handleCadastreClick}
+                    className="w-full btn-login"
+                    label="Cadastrar"
+                    icon="pi pi-user-plus"
+                    iconPos="left"
+                    severity="secondary"
+                    outlined
+                />
             </div>
         </Card>
     );
-}
+};
 
 export default Login;

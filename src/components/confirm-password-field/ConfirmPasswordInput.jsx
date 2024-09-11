@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import FormControl from '@mui/material/FormControl';
 import InputLabel from '@mui/material/InputLabel';
 import OutlinedInput from '@mui/material/OutlinedInput';
@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-const ConfirmPasswordField = ({ password }) => {
+const ConfirmPasswordField = ({ password, onConfirmPasswordChange }) => {
     const [repeatPassword, setRepeatPassword] = useState('');
     const [showRepeatPassword, setShowRepeatPassword] = useState(false);
     const [repeatPasswordError, setRepeatPasswordError] = useState('');
@@ -25,7 +25,16 @@ const ConfirmPasswordField = ({ password }) => {
         } else {
             setRepeatPasswordError('');
         }
+        if (onConfirmPasswordChange) {
+            onConfirmPasswordChange(newRepeatPassword);
+        }
     };
+
+    useEffect(() => {
+        if (repeatPassword === password) {
+            setRepeatPasswordError('');
+        }
+    }, [password, repeatPassword]);
 
     return (
         <div id="field-repeat-password" className="field">

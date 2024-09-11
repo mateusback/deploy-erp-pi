@@ -7,7 +7,7 @@ import IconButton from '@mui/material/IconButton';
 import Visibility from '@mui/icons-material/Visibility';
 import VisibilityOff from '@mui/icons-material/VisibilityOff';
 
-const SimplePasswordField = ({ id = 'outlined-adornment-password', label = 'Senha', placeholder = 'Digite sua senha' }) => {
+const SimplePasswordField = ({ id = 'outlined-adornment-password', label = 'Senha', placeholder = 'Digite sua senha', onChange }) => {
     const [password, setPassword] = useState('');
     const [showPassword, setShowPassword] = useState(false);
 
@@ -17,7 +17,11 @@ const SimplePasswordField = ({ id = 'outlined-adornment-password', label = 'Senh
     };
 
     const handlePasswordChange = (event) => {
-        setPassword(event.target.value);
+        const newPassword = event.target.value;
+        setPassword(newPassword);
+        if (onChange) {
+            onChange(newPassword);
+        }
     };
 
     return (

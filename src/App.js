@@ -6,6 +6,7 @@ import Change from './pages/change-password/Change';
 import Recover from './pages/recover-password/Recover';
 import Index from './pages/dashboard';
 import DashboardLayout from './components/layout/DashboardLayout';
+import Cadastre from './pages/cadastre/Cadastre';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Routes>
           <Route path='/' element={<LoginLayout><Login /></LoginLayout>} />
           <Route path='/change-password' element={<LoginLayout><Change /></LoginLayout>} />
+          <Route path='/cadastre' element={<LoginLayout><Cadastre /></LoginLayout>} />
           <Route path='/recover-password' element={<LoginLayout><Recover /></LoginLayout>} />
           <Route path='/dashboard' element={<DashboardLayout><Index /></DashboardLayout>} />
         </Routes>
