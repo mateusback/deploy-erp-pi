@@ -23,7 +23,8 @@ const ButtonProfile = () => {
         setAnchorEl(null);
     };
     const handleLogout = () => {
-        navigate('/');
+        console.log('Logout');
+        navigate(-1);
     };
 
     return (
@@ -43,7 +44,7 @@ const ButtonProfile = () => {
                 >
                     <Stack direction="row" spacing={1.25} alignItems="center" sx={{ p: 0.5 }}>
                         <Typography variant="subtitle1" sx={{ textTransform: 'capitalize' }}>
-                            Luisao
+                            Luis
                         </Typography>
                         <Avatar alt="profile user" src={""} size="sm" />
                     </Stack>
@@ -97,9 +98,9 @@ const ButtonProfile = () => {
                     </ListItemIcon>
                     Configurações
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={handleLogout}>
                     <ListItemIcon>
-                        <Logout fontSize="small" onClick={handleLogout}/>
+                        <Logout fontSize="small" />
                     </ListItemIcon>
                     Sair
                 </MenuItem>
