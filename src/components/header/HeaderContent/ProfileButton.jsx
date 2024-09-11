@@ -8,17 +8,22 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import { Settings, Logout } from '@mui/icons-material';
+import { Settings, Logout, Navigation } from '@mui/icons-material';
+import { useNavigate } from 'react-router-dom';
 
 
 const ButtonProfile = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
     const open = Boolean(anchorEl);
+    const navigate = useNavigate();
     const handleClick = (event) => {
         setAnchorEl(event.currentTarget);
     };
     const handleClose = () => {
         setAnchorEl(null);
+    };
+    const handleLogout = () => {
+        navigate('/');
     };
 
     return (
@@ -94,7 +99,7 @@ const ButtonProfile = () => {
                 </MenuItem>
                 <MenuItem onClick={handleClose}>
                     <ListItemIcon>
-                        <Logout fontSize="small" />
+                        <Logout fontSize="small" onClick={handleLogout}/>
                     </ListItemIcon>
                     Sair
                 </MenuItem>
