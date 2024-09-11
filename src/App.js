@@ -1,24 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import Login from './pages/login/Login';
+import LoginLayout from './components/layout/LoginLayout';
+import Change from './pages/change-password/Change';
+import Recover from './pages/recover-password/Recover';
+import Index from './pages/dashboard';
+import DashboardLayout from './components/layout/DashboardLayout';
+import Cadastre from './pages/cadastre/Cadastre';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<LoginLayout><Login /></LoginLayout>} />
+          <Route path='/change-password' element={<LoginLayout><Change /></LoginLayout>} />
+          <Route path='/cadastre' element={<LoginLayout><Cadastre /></LoginLayout>} />
+          <Route path='/recover-password' element={<LoginLayout><Recover /></LoginLayout>} />
+          <Route path='/dashboard' element={<DashboardLayout><Index /></DashboardLayout>} />
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
