@@ -8,7 +8,6 @@ import FormControl from '@mui/material/FormControl';
 import { Button } from 'primereact/button';
 import { verifyMail } from '../../services/LoginService';
 import "./../../index.css"
-import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
 
@@ -26,10 +25,8 @@ const Recover = () => {
     const handleRecoverClick = async () => {
         try {
             const data = { email };
-            const response = await verifyMail(data);
-            if (response === "Código enviado!") {
-                toast.success("Código enviado com sucesso!");
-            }
+            await verifyMail(data);
+            toast.success("Código enviado com sucesso!");
         } catch (error) {
             toast.error("Ocorreu um erro ao enviar o código.");
         }

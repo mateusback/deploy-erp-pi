@@ -1,11 +1,12 @@
 import axios from "axios";
 
 const API_URL = process.env.REACT_APP_API_URL;
-const URL_CONTROLLER = "v1/forgot-password/"
+const URL_CONTROLLER_FORGOT = "v1/forgot-password/"
+const URL_CONTROLLER_AUTH = "v1/auth/"
 
-export async function getFunction() {
+export async function authenticate(data) {
     try {
-        const response = await axios.get(`${API_URL}/`);
+        const response = await axios.post(`${API_URL}/${URL_CONTROLLER_AUTH}authenticate`, data);
         return response.data;
     } catch (error) {
         throw error; 
@@ -14,7 +15,7 @@ export async function getFunction() {
 
 export async function verifyMail(data) {
     try {
-        const response = await axios.post(`${API_URL}/${URL_CONTROLLER}verify-mail`, data);
+        const response = await axios.post(`${API_URL}/${URL_CONTROLLER_FORGOT}verify-mail`, data);
         return response.data;
     } catch (error) {
         throw error;
@@ -23,7 +24,16 @@ export async function verifyMail(data) {
 
 export async function changePassword(data) {
     try {
-        const response = await axios.post(`${API_URL}/${URL_CONTROLLER}change-password`, data);
+        const response = await axios.post(`${API_URL}/${URL_CONTROLLER_FORGOT}change-password`, data);
+        return response.data;
+    } catch (error) {   
+        throw error;
+    }
+}
+
+export async function cadastre(data) {
+    try {
+        const response = await axios.post(`${API_URL}/${URL_CONTROLLER_AUTH}register`, data);
         return response.data;
     } catch (error) {   
         throw error;

@@ -8,7 +8,7 @@ import ConfirmPasswordField from '../../components/confirm-password-field/Confir
 import LogoSvg from '../../components/Img/logo.svg';
 import './Change.css';
 import "./../../index.css"
-
+import { toast } from 'react-toastify';
 import { changePassword } from '../../services/LoginService';
 import { useLocation } from "react-router-dom";
 
@@ -42,11 +42,11 @@ const Change = () => {
     const handleChangePasswordClick = async () => {
         try {
             const data = { email, password, code };
-            const response = await changePassword(data);
-            window.open("/");
+            await changePassword(data);
+            toast.success("A senha foi alterada com sucesso!");
         } catch (error) {
+            toast.error("Erro ao alterar a senha.");
             console.error("Erro ao fazer requisição:", error);
-
         }
     };
 
