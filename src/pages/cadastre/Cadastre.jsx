@@ -11,7 +11,7 @@ import './Cadastre.css';
 import "./../../index.css"
 
 import { cadastre } from '../../services/LoginService';
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const Cadastre = () => {
     const [email, setEmail] = useState("");
@@ -21,6 +21,7 @@ const Cadastre = () => {
     const [errorMessage, setErrorMessage] = useState("");
     const [isButtonDisabled, setIsButtonDisabled] = useState(true);
     const location = useLocation();
+    const navigate = useNavigate();
 
     useEffect(() => {
         const queryParams = new URLSearchParams(location.search);
@@ -60,6 +61,7 @@ const Cadastre = () => {
         try {
             const data = { email, password, name };
             await cadastre(data);
+            navigate("/dashboard");
             toast.success("Cadastro realizado com sucesso!");
         } catch (error) {
             toast.error("Erro ao realizar cadastro.");
