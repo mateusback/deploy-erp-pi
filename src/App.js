@@ -7,6 +7,10 @@ import Recover from './pages/recover-password/Recover';
 import Index from './pages/dashboard';
 import DashboardLayout from './components/layout/DashboardLayout';
 import Cadastre from './pages/cadastre/Cadastre';
+import Products from './pages/dashboard/products/Products';
+import Balcon from './pages/dashboard/balcon/Balcon';
+import Commands from './pages/dashboard/commands/Commands';
+import ProductCreation from './pages/dashboard/products/ProductCreation';
 
 function App() {
   return (
@@ -18,6 +22,10 @@ function App() {
           <Route path='/cadastre' element={<LoginLayout><Cadastre /></LoginLayout>} />
           <Route path='/recover-password' element={<LoginLayout><Recover /></LoginLayout>} />
           <Route path='/dashboard' element={<DashboardLayout><Index /></DashboardLayout>} />
+          <Route path='/products' element={<DashboardLayout><Products /></DashboardLayout>} />
+          <Route path='/new-product' element={<DashboardLayout><ProductCreation /></DashboardLayout>} />
+          <Route path='/balcon' element={<DashboardLayout><Balcon /></DashboardLayout>} />
+          <Route path='/commands' element={<DashboardLayout><Commands /></DashboardLayout>} />
         </Routes>
       </BrowserRouter>
     </>

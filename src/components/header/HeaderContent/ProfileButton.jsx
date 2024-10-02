@@ -8,7 +8,7 @@ import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Divider from '@mui/material/Divider';
 import ListItemIcon from '@mui/material/ListItemIcon';
-import { Settings, Logout, Navigation } from '@mui/icons-material';
+import { Settings, Logout } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
 
 
@@ -97,9 +97,9 @@ const ButtonProfile = () => {
                     </ListItemIcon>
                     Configurações
                 </MenuItem>
-                <MenuItem onClick={handleClose}>
+                <MenuItem onClick={() => { handleLogout(); handleClose(); }}>
                     <ListItemIcon>
-                        <Logout fontSize="small" onClick={handleLogout}/>
+                        <Logout fontSize="small"/>
                     </ListItemIcon>
                     Sair
                 </MenuItem>

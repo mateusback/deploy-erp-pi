@@ -33,11 +33,9 @@
 }
 
 .logo-container {
+    width: 100%;
     display: flex;
-    align-items: center;
-    justify-content: flex-start;
-    margin: 8px;
-    padding: 0 15px;
+    justify-items: center;
 }
 
 .logo-container.closed {
@@ -45,20 +43,21 @@
 }
 
 .logo {
-    width: 60px;
+    width: 60px !important;
     transition: width 0.3s;
 }
 
 .logo.closed {
-    width: 75px;
+    width: 45px;
 }
 
 .title {
     color: var(--color-links-strong) !important;
-    font-size: 1.1rem !important;
+    font-size: 1rem !important;
     font-weight: 600;
     text-transform: uppercase;
     text-align: center;
+    margin-top: 10px;
 }
 
 .sidebar-header {

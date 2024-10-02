@@ -8,15 +8,16 @@ import { ListItemIcon } from '@mui/material';
 import { ListItemText } from '@mui/material';
 import { ListSubheader } from '@mui/material';
 // IMPORT MUI ICONS
-import { Info, InsertChart, Person, Settings, ShoppingCart, TableView, Wallet } from '@mui/icons-material';
+import { Info, InsertChart, Person, Settings, ShoppingCart, TableView, Wallet, Fastfood } from '@mui/icons-material';
 // IMPORT INTERNAL FILES
 import '../Sidebar.css';
 
 const menuItems = [
     { text: 'Visão Geral', icon: <InsertChart />, path: '/dashboard' },
-    { text: 'Balcão', icon: <ShoppingCart />, path: '#' },
-    { text: 'Comandas', icon: <TableView />, path: '#' },
+    { text: 'Balcão', icon: <ShoppingCart />, path: '/balcon' },
+    { text: 'Comandas', icon: <TableView />, path: '/commands' },
     { text: 'Carteiras', icon: <Wallet />, path: '#' },
+    {text: 'Produtos', icon: <Fastfood />, path: '/products' }
 ];
 
 const otherItems = [
