@@ -16,11 +16,12 @@ const Products = () => {
 
     return (
         <>
-            <div className='products-header'>
-                <p>Produtos</p>
-                <div className='products-buttons'>
-                    <Button className='products-button-filter' startIcon={<FilterAltIcon />}>Filtro</Button>
-                    <Button className='products-button-create' startIcon={<AddIcon />} onClick={handleCreateProduct}>Adicionar Produto</Button>            </div>
+            <div className='product-header'>
+                <p className='product-title'>Produtos</p>
+                <div className='product-buttons'>
+                    <Button className='product-button-filter' startIcon={<FilterAltIcon />}>Filtro</Button>
+                    <Button className='product-button-create' startIcon={<AddIcon />} onClick={handleCreateProduct}>Adicionar Produto</Button>
+                </div>
             </div>
 
             <div className='list-container'>
