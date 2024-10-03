@@ -104,3 +104,9 @@
     transition: background-color 0.3s;
     color: var(--color-links-strong) !important;
 }
+
+@media screen and (max-width: 600px) {
+    .Drawer {
+        width: 100%;
+    }
+}

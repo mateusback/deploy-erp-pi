@@ -1,3 +1,5 @@
+import { customPaper } from '../headerStyles'
+import style from '../Header.module.css'
 import React from 'react';
 import Avatar from '@mui/material/Avatar';
 import ButtonBase from '@mui/material/ButtonBase';
@@ -10,6 +12,7 @@ import Divider from '@mui/material/Divider';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { Settings, Logout } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
+import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
 
 
 const ButtonProfile = () => {
@@ -26,26 +29,24 @@ const ButtonProfile = () => {
         navigate('/');
     };
 
+    const custompaper = customPaper();
+
     return (
         <>
             <Box sx={{ display: 'flow', alignItems: 'center', textAlign: 'center' }}>
                 <ButtonBase
-                    className="profile-button"
+                    className={style.profileButton}
                     onClick={handleClick}
-                    sx={{
-                        p: 0.25,
-                        borderRadius: 1,
-                        '&:hover': { bgcolor: 'secondary.lighter' },
-                        '&:focus-visible': { outline: `2px solid`, outlineOffset: 2 }
-                    }}
                     aria-label="open profile"
                     aria-haspopup="true"
+
                 >
                     <Stack direction="row" spacing={1.25} alignItems="center" sx={{ p: 0.5 }}>
+                        <Avatar alt="profile user" src={""} size="sm" />
                         <Typography variant="subtitle1" sx={{ textTransform: 'capitalize' }}>
                             Luisao
                         </Typography>
-                        <Avatar alt="profile user" src={""} size="sm" />
+                        <ArrowDropDownIcon />
                     </Stack>
                 </ButtonBase>
             </Box>
@@ -55,34 +56,8 @@ const ButtonProfile = () => {
                 open={open}
                 onClose={handleClose}
                 onClick={handleClose}
-                slotProps={{
-                    paper: {
-                        elevation: 0,
-                        sx: {
-                            overflow: 'visible',
-                            filter: 'drop-shadow(0px 2px 8px rgba(0,0,0,0.32))',
-                            mt: 1.5,
-                            '& .MuiAvatar-root': {
-                                width: 32,
-                                height: 32,
-                                ml: -0.5,
-                                mr: 1,
-                            },
-                            '&::before': {
-                                content: '""',
-                                display: 'block',
-                                position: 'absolute',
-                                top: 0,
-                                right: 14,
-                                width: 10,
-                                height: 10,
-                                bgcolor: 'background.paper',
-                                transform: 'translateY(-50%) rotate(45deg)',
-                                zIndex: 0,
-                            },
-                        },
-                    },
-                }}
+                slotProps={custompaper}
+
                 transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                 anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
             >
@@ -99,7 +74,7 @@ const ButtonProfile = () => {
                 </MenuItem>
                 <MenuItem onClick={() => { handleLogout(); handleClose(); }}>
                     <ListItemIcon>
-                        <Logout fontSize="small"/>
+                        <Logout fontSize="small" />
                     </ListItemIcon>
                     Sair
                 </MenuItem>

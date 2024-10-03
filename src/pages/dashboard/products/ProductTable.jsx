@@ -1,4 +1,4 @@
-import './Products.css';
+import style from '../Index.module.css';
 import React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -8,8 +8,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 
-function createData(numero, imagem, produto, categoria, preco, status) {
-    return { numero, imagem, produto, categoria, preco, status };
+function createData(id, image, product, category, price, status) {
+    return { id, image, product, category, price, status };
 }
 
 const rows = [
@@ -25,9 +25,9 @@ const setStatusColor = (status) => {
 
 const ProductTable = () => {
     return (
-        <TableContainer className='table-container' component={Paper}>
+        <TableContainer className={style.tableContainer} component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="table">
-                <TableHead className='table-header' >
+                <TableHead className={style.tableHeader} >
                     <TableRow>
                         <TableCell>Produto</TableCell>
                         <TableCell align="right">Categoria</TableCell>
@@ -37,18 +37,18 @@ const ProductTable = () => {
                 </TableHead>
                 <TableBody>
                     {rows.map((row) => (
-                        <TableRow key={row.numero}>
+                        <TableRow key={row.id}>
                             <TableCell
-                                className='table-products'
+                                className={style.tableNameProduct}
                                 component="th"
                                 scope="row"
                                 style={{ color: row.status === 'Oculto' ? 'red' : 'inherit' }}>
-                                {row.numero}
-                                <img src={row.imagem} className='table-product-img' alt={row.produto} />
-                                {row.produto}
+                                {row.id}
+                                <img src={row.image} className={style.tableProductimg} alt={row.product} />
+                                {row.product}
                             </TableCell>
-                            <TableCell align="right">{row.categoria}</TableCell>
-                            <TableCell align="right">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(row.preco)}</TableCell>
+                            <TableCell align="right">{row.category}</TableCell>
+                            <TableCell align="right">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(row.price)}</TableCell>
                             <TableCell align="right" style={{ color: setStatusColor(row.status) }}> {row.status}</TableCell>
                         </TableRow>
                     ))}
