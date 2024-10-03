@@ -24,6 +24,11 @@
     gap: 10px;
 }
 
+.list-container{
+    margin-top:5vh;
+    background-color: var(--background-container);
+}
+
 .products-button-create {
     padding: 10px !important;
     color: white !important;
