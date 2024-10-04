@@ -7,13 +7,15 @@ import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import { Delete, Edit } from '@mui/icons-material';
+import { Button, ButtonGroup, Tooltip } from '@mui/material';
 
 function createData(id, image, product, category, price, status) {
     return { id, image, product, category, price, status };
 }
 
 const rows = [
-    createData('01', 'https://encurtador.com.br/RXpGl', 'Hamburguer', 'Sobremesa', 159, 'Ativo'),
+    createData('01', 'https://encurtador.com.br/RXpGl', 'Hamburguer', 'Sobremesa', 159, 'Ativo',),
     createData('02', 'https://encurtador.com.br/feUuQ', 'Pizza Doce', 'Sobremesa', 237, 'Oculto'),
     createData('03', 'https://encurtador.com.br/umvSl', 'Bomba de Chocolate', 'Sobremesa', 262, 'Ativo'),
     createData('04', 'https://encurtador.com.br/dvkYI', 'Bolo de Chocolate', 'Sobremesa', 262, 'Oculto'),
@@ -33,6 +35,7 @@ const ProductTable = () => {
                         <TableCell align="right">Categoria</TableCell>
                         <TableCell align="right">Preço</TableCell>
                         <TableCell align="right">Status</TableCell>
+                        <TableCell align="right">Ações</TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -50,6 +53,24 @@ const ProductTable = () => {
                             <TableCell align="right">{row.category}</TableCell>
                             <TableCell align="right">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(row.price)}</TableCell>
                             <TableCell align="right" style={{ color: setStatusColor(row.status) }}> {row.status}</TableCell>
+                            <TableCell align="right">
+                                <ButtonGroup
+                                    disableElevation
+                                    variant="contained"
+                                    aria-label="Botões de ação"
+                                >
+                                    <Tooltip title="Editar" arrow>
+                                        <Button aria-label="Botões de editar" className={style.tableButtonEdit}>
+                                            <Edit />
+                                        </Button>
+                                    </Tooltip>
+                                    <Tooltip title="Excluir" arrow >
+                                        <Button aria-label="Botão de deletar" className={style.tableButtonDelete}>
+                                            <Delete />
+                                        </Button>
+                                    </Tooltip>
+                                </ButtonGroup>
+                            </TableCell>
                         </TableRow>
                     ))}
                 </TableBody>

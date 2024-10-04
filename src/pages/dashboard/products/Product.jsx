@@ -33,7 +33,6 @@ const Products = () => {
                         <AddIcon />
                     </Button>
                 </div>
-
             </div>
 
             <div className={style.productTableContainer}>

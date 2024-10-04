@@ -1,4 +1,5 @@
 :root {
+    --text-white: #fff;
     --background-container: rgb(248, 248, 248);
     --button-color: rgb(242, 37, 152);
 }
@@ -26,9 +27,29 @@
 
 .buttonCreateProduct {
     padding: 10px !important;
-    color: white !important;
+    color: var(--text-white) !important;
     border-radius: 10px !important;
     background-color: var(--button-color) !important;
+    border: 1px solid var(--button-color) !important;
+}
+
+.buttonCreateProduct:hover {
+    background-color: #fff !important;
+    color: var(--button-color) !important;
+    transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
+}
+
+.buttonFilterProduct {
+    border: 1px solid var(--button-color) !important;
+    padding: 10px !important;
+    border-radius: 10px !important;
+    color: var(--button-color) !important;
+}
+
+.buttonFilterProduct:hover {
+    background-color: var(--button-color) !important;
+    color: var(--text-white) !important;
+    transition: background-color 300ms ease-in-out, color 300ms ease-in-out;
 }
 
 .tableContainer {
@@ -56,11 +77,23 @@
     margin: 0 10px;
 }
 
+.tableButtonEdit {
+    border: 0 !important;
+    color: black !important;
+    background-color: transparent !important;
+}
+
+.tableButtonDelete {
+    border: 0 !important;
+    color: red !important;
+    background-color: transparent !important;
+    ;
+}
+
 @media screen and (max-width: 768px) {
     .productButtons {
         display: none;
     }
-
 
     .mobileButtons {
         display: flex;
@@ -68,7 +101,9 @@
 
     .mobileCreateProd,
     .mobileFilterProd {
-        color: white !important;
+        font-weight: 500 !important;
+        font-size: 0.875rem !important;
+        color: var(--text-white) !important;
         padding: 10px !important;
         border-radius: 10px !important;
         display: flex;
@@ -77,14 +112,16 @@
     }
 
     .mobileCreateProd {
+        min-width: 40px !important;
         background-color: var(--button-color) !important;
     }
 
     .mobileFilterProd {
-        margin: 0 5px !important;
+        min-width: 60px;
+        border: 1px solid var(--button-color) !important;
+        margin: 0 8px !important;
         color: var(--button-color) !important;
     }
-
 }
 
 @media screen and (min-width: 769px) {

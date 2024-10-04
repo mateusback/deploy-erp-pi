@@ -12,8 +12,7 @@ import Divider from '@mui/material/Divider';
 import ListItemIcon from '@mui/material/ListItemIcon';
 import { Settings, Logout } from '@mui/icons-material';
 import { useNavigate } from 'react-router-dom';
-import ArrowDropDownIcon from '@mui/icons-material/ArrowDropDown';
-
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 const ButtonProfile = () => {
     const [anchorEl, setAnchorEl] = React.useState(null);
@@ -46,7 +45,7 @@ const ButtonProfile = () => {
                         <Typography variant="subtitle1" sx={{ textTransform: 'capitalize' }}>
                             Luisao
                         </Typography>
-                        <ArrowDropDownIcon />
+                        <ExpandMoreIcon />
                     </Stack>
                 </ButtonBase>
             </Box>

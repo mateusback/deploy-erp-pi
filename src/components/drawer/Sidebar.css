@@ -1,7 +1,7 @@
 :root {
     --background-drawer: rgb(250, 241, 244);
     --background-link-hover: rgb(255, 204, 221);
-    --color-links-sidebar: #757373;
+    --color-links-sidebar: rgb(83, 79, 79);
     --color-links-strong: rgb(242, 37, 152);
     --color-header-sidebar: rgb(85, 85, 85);
 }

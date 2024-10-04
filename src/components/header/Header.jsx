@@ -9,8 +9,9 @@ import Search from './HeaderContent/Search';
 import Notification from './HeaderContent/Notification';
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
-import clsx from 'clsx';
+import MenuIcon from '@mui/icons-material/Menu';
 
+import clsx from 'clsx';
 const Header = ({ isSidebarOpen, toggleSidebar }) => {
     const theme = useTheme();
     const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -32,7 +33,7 @@ const Header = ({ isSidebarOpen, toggleSidebar }) => {
                     onClick={toggleSidebar}
                     sx={config.iconButton}
                 >
-                    <MenuOpenIcon />
+                    {isSidebarOpen ? <MenuOpenIcon /> : <MenuIcon />}
                 </IconButton>
                 <Search />
                 <div className={style.buttonsContainer}>
