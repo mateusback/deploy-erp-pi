@@ -1,16 +1,13 @@
+import style from '../Sidebar.module.css';
 import React from 'react';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-// IMPORT MUI COMPONENTS
 import { List, Tooltip } from '@mui/material';
 import { ListItem } from '@mui/material';
 import { ListItemIcon } from '@mui/material';
 import { ListItemText } from '@mui/material';
 import { ListSubheader } from '@mui/material';
-// IMPORT MUI ICONS
 import { Info, InsertChart, Person, Settings, ShoppingCart, TableView, Wallet, Fastfood } from '@mui/icons-material';
-// IMPORT INTERNAL FILES
-import '../Sidebar.css';
 
 const menuItems = [
     { text: 'Visão Geral', icon: <InsertChart />, path: '/dashboard' },
@@ -41,26 +38,26 @@ const Navigation = ({ isOpen, toggleSidebar, isMobile }) => {
             <Tooltip title={isOpen ? '' : item.text} key={item.text}>
                 <ListItem
                     button
-                    className='list-item'
                     component={Link}
+                    className={style.listItem}
                     to={item.path}
                     selected={selectedIndex === index + offset}
                     onClick={() => handleListItemClick(index + offset)}
                 >
-                    <ListItemIcon className='list-item-icon'>{item.icon}</ListItemIcon>
+                    <ListItemIcon className={style.listItemIcon}>{item.icon}</ListItemIcon>
                     {isOpen && <ListItemText primary={item.text} />}
                 </ListItem>
             </Tooltip>
         ));
 
     return (
-        <List className='sidebar-list' sx={{ width: '100%', maxWidth: 370 }} component="nav">
-            <ListSubheader className={`sidebar-header ${isOpen ? '' : 'closed'}`} component="div">
+        <List className={style.containerListSidebar} sx={{ width: '100%', maxWidth: 370 }} component="nav">
+            <ListSubheader className={style.sidebarHeader} component="div">
                 Menu
             </ListSubheader>
             {renderListItems(menuItems)}
 
-            <ListSubheader className={`sidebar-header ${isOpen ? '' : 'closed'}`} component="div">
+            <ListSubheader className={style.sidebarHeader} component="div">
                 Outros
             </ListSubheader>
             {renderListItems(otherItems, menuItems.length)}

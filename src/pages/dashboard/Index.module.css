@@ -90,6 +90,43 @@
     ;
 }
 
+.newproductContainer {
+    width: 100%;
+    padding: 5px 20px 5px;
+    border-radius: 1vh;
+    justify-content: space-between;
+    background-color: var(--background-container);
+}
+
+.uploadContainer {
+    display: flex;
+    height: 55vh !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px #dbdbdb;
+    border-radius: 1vh;
+}
+
+.uploadContainer .specifications {
+    font-size: 0.875rem;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.uploadContainer .specifications p {
+    margin-bottom: 0.1rem;
+}
+
+.saveNewProductButton {
+    width: 20%;
+    max-width: 50%;
+    padding: 10px !important;
+    color: var(--text-white) !important;
+    border-radius: 10px !important;
+    background-color: var(--button-color) !important;
+}
+
 @media screen and (max-width: 768px) {
     .productButtons {
         display: none;
