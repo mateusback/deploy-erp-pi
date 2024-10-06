@@ -1,0 +1,59 @@
+.topbar {
+    box-shadow: none !important;
+    color: #303030 !important;
+    border-bottom: solid 1px #f0f0f0 !important;
+    background-color: white !important;
+}
+
+.buttonsContainer {
+    display: flex;
+    align-items: center;
+}
+
+.searchIcon {
+    border-radius: 5px !important;
+    border-color: #E0E3E7 !important;
+    background-color: #F3F6F9 !important;
+}
+
+.searchIconButton {
+    background-color: transparent !important;
+}
+
+.notificationButton {
+    margin: 0 1px 0 1.5rem !important;
+}
+
+.notificationIcon {
+    padding: 5px;
+    border-radius: 5px !important;
+    color: #F22598 !important;
+    background-color: transparent !important;
+    transition: width 0.5s ease-in-out, margin 0.5s ease-in-out;
+}
+
+.notificationIcon:hover {
+    color: #D81B60 !important;
+}
+
+.profileButton {
+    padding: 0.25;
+    border-radius: 10px !important;
+    color: var(--color-links-sidebar) !important;
+}
+
+.profileButton:hover {
+    background-color: rgb(250, 241, 244) !important;
+}
+
+@media (max-width: 900px) {
+    .searchInput {
+        width: 100%;
+        margin-right: 10px;
+        transition: width 0.5s ease-in-out, margin 0.5s ease-in-out;
+    }
+
+    .notificationButton {
+        margin: 0 0.7rem 0 0.7rem !important;
+    }
+}

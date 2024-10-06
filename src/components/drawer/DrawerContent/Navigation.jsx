@@ -8,15 +8,16 @@ import { ListItemIcon } from '@mui/material';
 import { ListItemText } from '@mui/material';
 import { ListSubheader } from '@mui/material';
 // IMPORT MUI ICONS
-import { Info, InsertChart, Person, Settings, ShoppingCart, TableView, Wallet } from '@mui/icons-material';
+import { Info, InsertChart, Person, Settings, ShoppingCart, TableView, Wallet, Fastfood } from '@mui/icons-material';
 // IMPORT INTERNAL FILES
 import '../Sidebar.css';
 
 const menuItems = [
     { text: 'Visão Geral', icon: <InsertChart />, path: '/dashboard' },
-    { text: 'Balcão', icon: <ShoppingCart />, path: '#' },
-    { text: 'Comandas', icon: <TableView />, path: '#' },
-    { text: 'Carteiras', icon: <Wallet />, path: '#' },
+    { text: 'Balcão', icon: <ShoppingCart />, path: '/balcon' },
+    { text: 'Comandas', icon: <TableView />, path: '/commands' },
+    { text: 'Carteiras', icon: <Wallet />, path: '/wallet' },
+    { text: 'Produtos', icon: <Fastfood />, path: '/products' },
 ];
 
 const otherItems = [
@@ -25,17 +26,19 @@ const otherItems = [
     { text: 'Ajuda', icon: <Info />, path: '#' },
 ];
 
-const Navigation = ({ isOpen }) => {
+const Navigation = ({ isOpen, toggleSidebar, isMobile }) => {
     const [selectedIndex, setSelectedIndex] = useState();
 
     const handleListItemClick = (index) => {
         setSelectedIndex(index);
+        if (isMobile) {
+            toggleSidebar();
+        }
     };
-
 
     const renderListItems = (items, offset = 0) =>
         items.map((item, index) => (
-            <Tooltip title={isOpen ? '' : item.text} placement="left" arrow key={item.text}>
+            <Tooltip title={isOpen ? '' : item.text} key={item.text}>
                 <ListItem
                     button
                     className='list-item'

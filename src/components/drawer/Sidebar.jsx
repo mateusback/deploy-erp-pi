@@ -1,32 +1,29 @@
 import React from 'react';
-// IMPORT MUI COMPONENTS
-import { Drawer } from '@mui/material';
-import { Typography } from '@mui/material';
-import { Box } from '@mui/material';
-// IMPORT INTERNAL FILES
-import './Sidebar.css';
-import LogoSVG from '../Img/logo.svg'
+import clsx from 'clsx';
+import { Drawer, Typography, Box } from '@mui/material';
+import LogoSVG from '../Img/logo.svg';
 import Navigation from './DrawerContent/Navigation';
 
-const Sidebar = ({ isOpen }) => {
+const Sidebar = ({ isOpen, toggleSidebar, isMobile }) => {
     return (
         <Drawer
-            className={`Drawer ${isOpen ? '' : 'closed'}`}
-            variant="permanent"
+            className={clsx('Drawer', { 'closed': !isOpen })}
+            variant={isMobile ? 'temporary' : 'persistent'}
+            open={isOpen}
+            onClose={toggleSidebar}
+            ModalProps={{ keepMounted: true }}
         >
-            <Box
-                className={`logo-container ${isOpen ? '' : 'closed'}`}
-            >
-                <img className={`logo ${isOpen ? '' : 'closed'}`} src={LogoSVG} alt="Logo" />
+            <Box className={clsx('logo-container', { 'closed': !isOpen })}>
+                <img className={clsx('logo', { 'closed': !isOpen })} src={LogoSVG} alt="Logo" />
                 {isOpen && (
-                    <Typography className='title' variant="h6">
+                    <Typography className="title" variant="h6">
                         snacktime
                     </Typography>
                 )}
             </Box>
-            <Navigation isOpen={isOpen} />
-        </Drawer >
+            <Navigation isOpen={isOpen} toggleSidebar={toggleSidebar} isMobile={isMobile} />
+        </Drawer>
     );
-}
+};
 
 export default Sidebar;
