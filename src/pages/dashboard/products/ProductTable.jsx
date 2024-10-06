@@ -1,35 +1,115 @@
+import React, { useEffect, useState } from 'react';
+import { deleteProduct, getAllProducts } from '../../../services/ProductService';
 import style from '../Index.module.css';
-import React from 'react';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell from '@mui/material/TableCell';
 import TableContainer from '@mui/material/TableContainer';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import Box from '@mui/material/Box';
 import { Delete, Edit } from '@mui/icons-material';
-import { Button, ButtonGroup, Tooltip } from '@mui/material';
-
-function createData(id, image, product, category, price, status) {
-    return { id, image, product, category, price, status };
-}
-
-const rows = [
-    createData('01', 'https://encurtador.com.br/RXpGl', 'Hamburguer', 'Sobremesa', 159, 'Ativo',),
-    createData('02', 'https://encurtador.com.br/feUuQ', 'Pizza Doce', 'Sobremesa', 237, 'Oculto'),
-    createData('03', 'https://encurtador.com.br/umvSl', 'Bomba de Chocolate', 'Sobremesa', 262, 'Ativo'),
-    createData('04', 'https://encurtador.com.br/dvkYI', 'Bolo de Chocolate', 'Sobremesa', 262, 'Oculto'),
-];
+import { Button, ButtonGroup, Tooltip, Typography, IconButton, TableCell, CircularProgress } from '@mui/material';
 
 const setStatusColor = (status) => {
     return status === 'Ativo' ? 'green' : 'red';
-}
+};
 
 const ProductTable = () => {
+    const [produtos, setProdutos] = useState([]);
+    const [loading, setLoading] = useState(true);
+
+    const fetchProducts = async () => {
+        setLoading(true);
+        try {
+            const products = await getAllProducts();
+            setProdutos(products);
+        } catch (error) {
+            console.error('Erro ao buscar produtos:', error);
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    const handleDelete = async (id) => {
+        const confirmDelete = window.confirm("Tem certeza que deseja excluir este produto?");
+        if (confirmDelete) {
+            try {
+                await deleteProduct(id);
+                fetchProducts();
+            } catch (error) {
+                console.error('Erro ao excluir o produto:', error);
+            }
+        }
+    };
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
+    const renderTableContent = () => {
+        if (loading) {
+            return (
+                <TableRow>
+                    <TableCell colSpan={5} align="center">
+                        <Box role="progressbar" sx={{ display: 'flex', justifyContent: 'center' }}>
+                            <CircularProgress />
+                        </Box>
+                    </TableCell>
+                </TableRow>
+            );
+        }
+
+        if (produtos.length === 0) {
+            return (
+                <TableRow>
+                    <TableCell colSpan={5} align="center">
+                        <Typography variant="body1">Nenhum produto cadastrado.</Typography>
+                    </TableCell>
+                </TableRow>
+            );
+        }
+
+        return produtos.map((produto) => (
+            <TableRow key={produto.id}>
+                <TableCell className={style.tableNameProduct} component="th" scope="row" style={{ color: produto.status === 'Oculto' ? 'red' : 'inherit' }}>
+                    {produto.id}
+                    <img src={produto.image} className={style.tableProductimg} alt={produto.product} />
+                    {produto.product}
+                </TableCell>
+                <TableCell align="right">{produto.category}</TableCell>
+                <TableCell align="right">
+                    {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto.price)}
+                </TableCell>
+                <TableCell align="right" style={{ color: setStatusColor(produto.status) }}>
+                    {produto.status}
+                </TableCell>
+                <TableCell align="right">
+                    <ButtonGroup disableElevation variant="contained" aria-label="Botões de ação">
+                        <Tooltip title="Editar" arrow>
+                            <Button aria-label="Botões de editar" className={style.tableButtonEdit}>
+                                <Edit />
+                            </Button>
+                        </Tooltip>
+                        <Tooltip title="Excluir" arrow>
+                            <IconButton
+                                aria-label={`Botão de deletar ${produto.product}`}
+                                className={style.tableButtonDelete}
+                                onClick={() => handleDelete(produto.id)}
+                            >
+                                <Delete />
+                            </IconButton>
+                        </Tooltip>
+                    </ButtonGroup>
+                </TableCell>
+            </TableRow>
+        ));
+    };
+
     return (
         <TableContainer className={style.tableContainer} component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="table">
-                <TableHead className={style.tableHeader} >
+                <TableHead className={style.tableHeader}>
                     <TableRow>
                         <TableCell>Produto</TableCell>
                         <TableCell align="right">Categoria</TableCell>
@@ -39,44 +119,11 @@ const ProductTable = () => {
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {rows.map((row) => (
-                        <TableRow key={row.id}>
-                            <TableCell
-                                className={style.tableNameProduct}
-                                component="th"
-                                scope="row"
-                                style={{ color: row.status === 'Oculto' ? 'red' : 'inherit' }}>
-                                {row.id}
-                                <img src={row.image} className={style.tableProductimg} alt={row.product} />
-                                {row.product}
-                            </TableCell>
-                            <TableCell align="right">{row.category}</TableCell>
-                            <TableCell align="right">{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(row.price)}</TableCell>
-                            <TableCell align="right" style={{ color: setStatusColor(row.status) }}> {row.status}</TableCell>
-                            <TableCell align="right">
-                                <ButtonGroup
-                                    disableElevation
-                                    variant="contained"
-                                    aria-label="Botões de ação"
-                                >
-                                    <Tooltip title="Editar" arrow>
-                                        <Button aria-label="Botões de editar" className={style.tableButtonEdit}>
-                                            <Edit />
-                                        </Button>
-                                    </Tooltip>
-                                    <Tooltip title="Excluir" arrow >
-                                        <Button aria-label="Botão de deletar" className={style.tableButtonDelete}>
-                                            <Delete />
-                                        </Button>
-                                    </Tooltip>
-                                </ButtonGroup>
-                            </TableCell>
-                        </TableRow>
-                    ))}
+                    {renderTableContent()}
                 </TableBody>
             </Table>
         </TableContainer>
     );
-}
+};
 
 export default ProductTable;

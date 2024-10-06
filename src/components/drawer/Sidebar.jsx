@@ -21,7 +21,7 @@ const Sidebar = ({ isOpen, toggleSidebar, isMobile }) => {
                     </Typography>
                 )}
             </Box>
-            <Navigation isOpen={isOpen} />
+            <Navigation isOpen={isOpen} toggleSidebar={toggleSidebar} isMobile={isMobile} />
         </Drawer>
     );
 };

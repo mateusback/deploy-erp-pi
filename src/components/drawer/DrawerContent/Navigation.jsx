@@ -16,8 +16,8 @@ const menuItems = [
     { text: 'Visão Geral', icon: <InsertChart />, path: '/dashboard' },
     { text: 'Balcão', icon: <ShoppingCart />, path: '/balcon' },
     { text: 'Comandas', icon: <TableView />, path: '/commands' },
-    { text: 'Carteiras', icon: <Wallet />, path: '#' },
-    {text: 'Produtos', icon: <Fastfood />, path: '/products' }
+    { text: 'Carteiras', icon: <Wallet />, path: '/wallet' },
+    { text: 'Produtos', icon: <Fastfood />, path: '/products' },
 ];
 
 const otherItems = [
@@ -26,17 +26,19 @@ const otherItems = [
     { text: 'Ajuda', icon: <Info />, path: '#' },
 ];
 
-const Navigation = ({ isOpen }) => {
+const Navigation = ({ isOpen, toggleSidebar, isMobile }) => {
     const [selectedIndex, setSelectedIndex] = useState();
 
     const handleListItemClick = (index) => {
         setSelectedIndex(index);
+        if (isMobile) {
+            toggleSidebar();
+        }
     };
-
 
     const renderListItems = (items, offset = 0) =>
         items.map((item, index) => (
-            <Tooltip title={isOpen ? '' : item.text} placement="left" arrow key={item.text}>
+            <Tooltip title={isOpen ? '' : item.text} key={item.text}>
                 <ListItem
                     button
                     className='list-item'
