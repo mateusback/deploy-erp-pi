@@ -127,6 +127,46 @@
     background-color: var(--button-color) !important;
 }
 
+.backLink {
+    width: 40px;
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    color: blue;
+    text-decoration: none;
+    padding: 0 0 1rem 0;
+}
+
+.backLink:hover {
+    color: darkblue;
+}
+
+.alert {
+    width: 90%;
+    max-width: 500px;
+    position: fixed;
+    top: 5.5%;
+    right: 5%;
+    transform: translateX(-50%);
+    margin-top: 1rem;
+    z-index: 1050;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+}
+
+.alert.hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+}
+
+.ActiveCheckbox {
+    display: flex;
+    margin-top: 1.6rem;
+    margin-left: 0.5rem;
+    align-items: center;
+}
+
 @media screen and (max-width: 768px) {
     .productButtons {
         display: none;
@@ -158,6 +198,13 @@
         border: 1px solid var(--button-color) !important;
         margin: 0 8px !important;
         color: var(--button-color) !important;
+    }
+
+    .ActiveCheckbox {
+        display: flex !important;
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        justify-content: center !important;
     }
 }
 

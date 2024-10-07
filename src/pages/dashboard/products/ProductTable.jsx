@@ -1,4 +1,4 @@
-import Alert from './Alert';
+import AlertDelete from './ConfirmDeleteBox';
 import { getAllProducts } from '../../../services/ProductService';
 import React, { useEffect, useState } from 'react';
 import style from '../Index.module.css';
@@ -125,7 +125,7 @@ const ProductTable = () => {
             </TableContainer>
 
             {productToDelete && (
-                <Alert
+                <AlertDelete
                     id={productToDelete.id}
                     product={productToDelete.product}
                     fetchProducts={fetchProducts}
