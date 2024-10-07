@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { styled } from '@mui/system';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import { Alert, Box, Checkbox, FormControlLabel, Snackbar, Typography } from '@mui/material';
+import { Box, Checkbox, FormControlLabel, Typography } from '@mui/material';
 import { Button } from '@mui/material';
 import { Grid } from '@mui/material';
 import { InputLabel } from '@mui/material';
@@ -12,6 +12,7 @@ import style from '../Index.module.css';
 import { ArrowBackIosOutlined } from '@mui/icons-material';
 import { Link, useNavigate } from 'react-router-dom';
 import { save } from '../../../services/ProductService';
+import { toast } from 'react-toastify';
 
 const UploadBox = styled(Box)({
     border: '2px dashed #dbdbdb',
@@ -35,8 +36,8 @@ const ProductCreation = () => {
     const [category, setCategory] = useState('');
     const [details, setDetails] = useState('');
     const [price, setPrice] = useState('');
+    const [image, setImage] = useState(null);
     const [isActive, setIsActive] = useState(false);
-    const [alert, setAlert] = useState({ severity: '', message: '' });
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -46,6 +47,7 @@ const ProductCreation = () => {
                 setImagePreview(reader.result);
             };
             reader.readAsDataURL(file);
+            setImage(file);
         }
     };
 
@@ -61,35 +63,31 @@ const ProductCreation = () => {
             details,
             price,
             isActive,
+            image,
         };
 
         try {
             await save(productData);
-            setAlert({ severity: 'success', message: 'Produto salvo com sucesso!' });
+            toast.success("Produto salvo com sucesso!");
+
+            setName('');
+            setCode('');
+            setCategory('');
+            setDetails('');
+            setPrice('');
+            setIsActive(false);
+            setImage(null);
+            setImagePreview(null);
+
             navigate('/produtos');
         } catch (error) {
-            console.error("Erro ao salvar o produto:", error);
-            setAlert({ severity: 'error', message: 'Erro ao salvar o produto!' });
+            toast.error("Erro ao salvar o produto!");
+            console.error("Erro ao fazer requisição:", error);
         }
     }
 
     return (
         <>
-            {alert.message && (
-                <Snackbar
-                    open={Boolean(alert.message)}
-                    autoHideDuration={5000}
-                    onClose={() => setAlert({ severity: '', message: '' })}
-                >
-                    <Alert
-                        severity={alert.severity}
-                        onClose={() => setAlert({ severity: '', message: '' })}
-                        className={style.alert}
-                    >
-                        {alert.message}
-                    </Alert>
-                </Snackbar>
-            )}
             <Link onClick={handleNavigateBack} underline="none" className={style.backLink}>
                 <ArrowBackIosOutlined fontSize="small" /> Voltar
             </Link>
@@ -98,7 +96,9 @@ const ProductCreation = () => {
                 <Grid container spacing={4}>
                     <Grid item xs={12} md={4}>
                         <Box className={style.uploadContainer}>
-                            <UploadBox sx={{ mb: 5 }} onClick={() => document.getElementById('imageUpload').click()}>
+                            <UploadBox
+                                sx={{ mb: 5 }}
+                                onClick={() => document.getElementById('imageUpload').click()}>
                                 {imagePreview ? (
                                     <img src={imagePreview} alt="Prévia" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                 ) : (
@@ -126,7 +126,7 @@ const ProductCreation = () => {
                     <Grid item xs={16} md={8}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={6}>
-                                <InputLabel><strong>Nome</strong></InputLabel>
+                                <InputLabel required><strong>Nome</strong></InputLabel>
                                 <TextField
                                     fullWidth
                                     variant="outlined"
@@ -135,7 +135,7 @@ const ProductCreation = () => {
                                 />
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <InputLabel><strong>Código</strong></InputLabel>
+                                <InputLabel required><strong>Código</strong></InputLabel>
                                 <TextField
                                     fullWidth
                                     variant="outlined"
@@ -144,7 +144,7 @@ const ProductCreation = () => {
                                 />
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <InputLabel id="category-form"><strong>Categoria</strong></InputLabel>
+                                <InputLabel id="category-form" required><strong>Categoria</strong></InputLabel>
                                 <Select
                                     fullWidth
                                     labelId="category-label"
@@ -158,7 +158,7 @@ const ProductCreation = () => {
                                 </Select>
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <InputLabel><strong>Detalhes</strong></InputLabel>
+                                <InputLabel required><strong>Detalhes</strong></InputLabel>
                                 <TextField
                                     fullWidth
                                     variant="outlined"
@@ -167,8 +167,9 @@ const ProductCreation = () => {
                                 />
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <InputLabel><strong>Preço</strong></InputLabel>
+                                <InputLabel required><strong>Preço</strong></InputLabel>
                                 <TextField
+                                    type="number"
                                     fullWidth
                                     variant="outlined"
                                     value={price}
@@ -180,6 +181,7 @@ const ProductCreation = () => {
                             </Grid>
                             <Grid item xs={12} md={6}>
                                 <FormControlLabel
+                                    required
                                     className={style.ActiveCheckbox}
                                     control={<Checkbox checked={isActive} onChange={(e) => setIsActive(e.target.checked)} />}
                                     label="Ativo"
