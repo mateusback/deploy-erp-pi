@@ -3,6 +3,7 @@
     color: #303030 !important;
     border-bottom: solid 1px #e7dce1 !important;
     background-color: white !important;
+    padding: 0 0.5rem;
 }
 
 .buttonsContainer {
@@ -10,14 +11,19 @@
     align-items: center;
 }
 
+.searchInput {
+    width: 65% !important;
+    box-sizing: border-box !important;
+}
+
+.searchIconButton {
+    padding: 0 !important;
+}
+
 .searchIcon {
     border-radius: 5px !important;
     border-color: #E0E3E7 !important;
     background-color: #F3F6F9 !important;
-}
-
-.searchIconButton {
-    background-color: transparent !important;
 }
 
 .notificationButton {
@@ -46,14 +52,22 @@
     background-color: rgb(250, 241, 244) !important;
 }
 
-@media (max-width: 900px) {
+@media (max-width: 600px) {
     .searchInput {
-        width: 100%;
-        margin-right: 10px;
-        transition: width 0.5s ease-in-out, margin 0.5s ease-in-out;
+        width: 80vw !important;
+        margin-left: -10px !important;
+        position: absolute !important;
+        top: 20px;
+        z-index: 1000 !important;
+        left: 0 !important;
+        right: 0 !important;
+        padding: 0 10px;
+        box-sizing: border-box !important;
     }
 
-    .notificationButton {
-        margin: 0 0.7rem 0 0.7rem !important;
+    .buttonsContainer {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
     }
 }

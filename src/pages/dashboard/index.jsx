@@ -46,16 +46,16 @@ const Dashboard = () => {
                 <Grid container sx={{ width: '100%' }} className={style.commonBoxTable}>
                     <Grid item xs={12} md={4} >
                         <Box sx={commonBoxStyles} className={style.borderTableBottomMobile}>
-                            <Typography className={style.chartsTitles}>Clientes que mais compram</Typography>
-                            <Typography className={style.captionCharts}>
+                            <Typography className={style.chartTitle}>Clientes que mais compram</Typography>
+                            <Typography className={style.chartCaption}>
                                 Vendas 1-12 Ago, 2024
                             </Typography>
                             <List>
                                 {clients.map((client, index) => (
-                                    <ListItem key={index} className={style.listItemTable}>
-                                        <Box className={style.containerListSellsAvatar}>
+                                    <ListItem key={index} className={style.listItensMostSales}>
+                                        <Box className={style.containerListSalesAvatar}>
                                             <ListItemAvatar>
-                                                <Avatar className={style.listSellsAvatarColor} />
+                                                <Avatar className={style.listSalesAvatarColor} />
                                             </ListItemAvatar>
                                             <ListItemText primary={client.name} />
                                         </Box>
@@ -69,16 +69,16 @@ const Dashboard = () => {
                     <Grid item xs={12} md={4}>
                         <Box className={style.borderTableBottomMobile}
                             sx={{ p: 2, borderLeft: '1px solid #e0e0e0', borderRight: '1px solid #e0e0e0' }}>
-                            <Typography className={style.chartsTitles}>Produtos mais vendidos</Typography>
-                            <Typography className={style.captionCharts}>
+                            <Typography className={style.chartTitle} >Produtos mais vendidos</Typography>
+                            <Typography className={style.chartCaption}>
                                 Vendas 1-12 Ago, 2024
                             </Typography>
                             <List>
                                 {products.map((product, index) => (
-                                    <ListItem key={index} className={style.listItemTable}>
-                                        <Box className={style.containerListSellsAvatar}>
+                                    <ListItem key={index} className={style.listItensMostSales}>
+                                        <Box className={style.containerListSalesAvatar}>
                                             <ListItemAvatar>
-                                                <Avatar className={style.listSellsAvatarColor} />
+                                                <Avatar className={style.listSalesAvatarColor} />
                                             </ListItemAvatar>
                                             <ListItemText primary={product.name} />
                                         </Box>

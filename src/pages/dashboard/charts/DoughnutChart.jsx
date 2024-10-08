@@ -32,8 +32,8 @@ const DoughnutChart = () => {
             <Box sx={{ p: 2, borderLeft: '1px solid #e0e0e0', height: "100%" }} className={style.borderTableBottomMobile}>
                 <Box className={style.containerHeaderCharts}>
                     <Box>
-                        <Typography className={style.chartsTitles}>Períodos Agendados</Typography>
-                        <Typography className={style.captionCharts}>Agenda 1-12 Ago, 2024</Typography>
+                        <Typography className={style.chartTitle}>Períodos Agendados</Typography>
+                        <Typography className={style.chartCaption}>Agenda 1-12 Ago, 2024</Typography>
                     </Box>
 
                     <Button variant="outlined" size="small">Detalhes</Button>
@@ -42,33 +42,34 @@ const DoughnutChart = () => {
                 <Box sx={{ height: '250px', mt: 2 }}>
                     <Doughnut data={doughnutData} options={doughnutOptions} />
                 </Box>
-                <Box sx={{ display: 'flex', justifyContent: 'space-around', mt: 4 }}>
-                    <Box sx={{ textAlign: 'center' }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Box sx={{ width: '10px', height: '10px', backgroundColor: '#5C6BC0', borderRadius: '50%', mr: 1 }} />
+
+                <Box className={style.flexBoxCenter}>
+                    <Box className={style.textCenter}>
+                        <Box className={style.flexCenter}>
+                            <Box className={`${style.circleDoughnut} ${style.afternoon}`} />
                             <Typography>Tarde</Typography>
                         </Box>
                         <Typography variant="body2" color="textSecondary">40%</Typography>
                     </Box>
 
-                    <Box sx={{ textAlign: 'center' }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Box sx={{ width: '10px', height: '10px', backgroundColor: '#7986CB', borderRadius: '50%', mr: 1 }} />
+                    <Box className={style.textCenter}>
+                        <Box className={style.flexCenter}>
+                            <Box className={`${style.circleDoughnut} ${style.night}`} />
                             <Typography>Noite</Typography>
                         </Box>
-                        <Typography variant="body2" color="textSecondary">32%</Typography>
+                        <Typography st variant="body2" color="textSecondary">32%</Typography>
                     </Box>
 
-                    <Box sx={{ textAlign: 'center' }}>
-                        <Box sx={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                            <Box sx={{ width: '10px', height: '10px', backgroundColor: '#9FA8DA', borderRadius: '50%', mr: 1 }} />
+                    <Box className={style.textCenter}>
+                        <Box className={style.flexCenter}>
+                            <Box className={`${style.circleDoughnut} ${style.morning}`} />
                             <Typography>Manhã</Typography>
                         </Box>
-                        <Typography variant="body2" color="textSecondary">28%</Typography>
+                        <Typography variant="body2" color="textSecondary" className={style.percentText}>28%</Typography>
                     </Box>
                 </Box>
             </Box>
-        </Grid>
+        </Grid >
     )
 }
 

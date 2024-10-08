@@ -28,7 +28,7 @@ const Search = () => {
     };
 
     return (
-        <Box sx={{ width: '100%', ml: { xs: 0, md: 1 }, position: 'relative', justifyContent: 'center' }}>
+        <Box sx={{ width: '100%', position: 'relative' }}>
             {isMobile && !showSearch ? (
                 <IconButton onClick={handleSearchClick} aria-label="search">
                     <SearchOutlined />
@@ -37,29 +37,27 @@ const Search = () => {
 
             {isMobile && showSearch && (
                 <ClickAwayListener onClickAway={handleCloseSearch}>
-                    <Box className={style.searchInput} >
-                        <FormControl sx={{ width: '100%' }}>
-                            <CustomInput
-                                size="small"
-                                placeholder="Buscar"
-                                className={style.searchIcon}
-                                value={search}
-                                onChange={handleSearchChange}
-                                endAdornment={
-                                    <InputAdornment position="end">
-                                        <IconButton onClick={handleCloseSearch}>
-                                            <Close />
-                                        </IconButton>
-                                    </InputAdornment>
-                                }
-                            />
-                        </FormControl>
-                    </Box>
+                    <FormControl className={style.searchInput}>
+                        <CustomInput
+                            size="small"
+                            placeholder="Buscar"
+                            className={style.searchIcon}
+                            value={search}
+                            onChange={handleSearchChange}
+                            endAdornment={(
+                                <InputAdornment position="end">
+                                    <IconButton onClick={handleCloseSearch}>
+                                        <Close />
+                                    </IconButton>
+                                </InputAdornment>
+                            )}
+                        />
+                    </FormControl>
                 </ClickAwayListener>
             )}
 
             {!isMobile && (
-                <FormControl sx={{ width: { xs: '100%', md: 600 } }}>
+                <FormControl className={style.searchInput}>
                     <CustomInput
                         size="small"
                         placeholder="Buscar"
@@ -67,7 +65,7 @@ const Search = () => {
                         value={search}
                         onChange={handleSearchChange}
                         endAdornment={(
-                            <InputAdornment position="end">
+                            <InputAdornment position="start">
                                 <IconButton className={style.searchIconButton}>
                                     <SearchOutlined />
                                 </IconButton>
@@ -77,6 +75,7 @@ const Search = () => {
                 </FormControl>
             )}
         </Box>
+
     );
 };
 

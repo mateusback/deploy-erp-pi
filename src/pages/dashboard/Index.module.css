@@ -172,48 +172,44 @@
     height: 100% !important;
 }
 
-.chartsTitles {
+.chartTitle {
     display: flex;
     color: #000101;
     justify-content: space-between;
-    margin-top: 0.5rem;
-    font-size: 1.1rem;
+    font-size: 1rem;
 }
 
-.listItemTable {
-    display: flex !important;
-    justify-content: space-between !important;
-}
-
-.captionSells {
+.salesCaption {
     font-size: small !important;
-    font-weight: 600 !important;
-    color: #808181 !important;
+    font-weight: 500 !important;
+    color: #625456 !important;
     margin-top: 1rem !important;
 }
 
-.captionCharts {
+.chartCaption {
     margin-top: 5px !important;
     font-size: small !important;
-    font-weight: 600 !important;
-    color: #808181 !important;
+    font-weight: 500 !important;
+    color: #625456 !important;
 }
 
-
-.containerInforChartsMonth {
+.flexBoxLeft {
     display: flex !important;
     justify-content: flex-start !important;
     margin-top: 1rem !important;
     margin-bottom: 0.1rem !important;
 }
 
-.inforchartsMonth {
-    display: flex !important;
-    justify-content: center !important;
-    align-items: center !important;
+.flexLeft {
+    display: flex;
+    align-items: center;
 }
 
-.chartsMonthShape {
+.textLeft {
+    text-align: start;
+}
+
+.monthCircle {
     width: 10px !important;
     height: 10px !important;
     border-radius: 50% !important;
@@ -221,24 +217,76 @@
     margin-left: 1rem !important;
 }
 
-.chartsMonthShape.current {
+.monthCircle.current {
     background-color: #3f51b5 !important;
 }
 
-.chartsMonthShape.previous {
+.monthCircle.previous {
     background-color: #e0e0e0 !important;
 }
 
-.captionLostChart {
+.flexBoxCenter {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    margin-top: 32px !important;
+}
+
+.textCenter {
+    text-align: center !important;
+}
+
+.flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circleDoughnut {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    margin-right: 8px !important;
+}
+
+.circleDoughnut.afternoon {
+    background-color: #5C6BC0;
+}
+
+.circleDoughnut.night {
+    background-color: #7986CB;
+}
+
+.circleDoughnut.morning {
+    background-color: #9FA8DA;
+}
+
+.flexRowCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.percentText {
+    margin-left: 4px;
+}
+
+.captionLost {
     color: red !important;
 }
 
-.containerListSellsAvatar {
+.listItensMostSales {
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+.containerListSalesAvatar {
     display: flex !important;
     align-items: center !important;
 }
 
-.listSellsAvatarColor {
+.listSalesAvatarColor {
     background-color: #f0f0f0 !important;
 }
 
@@ -301,7 +349,7 @@
         border-bottom: 1px solid #e0e0e0 !important;
     }
 
-    .containerInforChartsMonth {
+    .flexBoxLeft {
         justify-content: center !important;
     }
 }

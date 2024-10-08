@@ -34,26 +34,26 @@ const LineChart = () => {
             <Box className={`${style.commonBoxStyles} ${style.borderTableBottomMobile}`} >
                 <Box className={style.containerHeaderCharts}>
                     <Box>
-                        <Typography className={style.chartsTitles}>Faturamento</Typography>
+                        <Typography className={style.chartTitle}>Faturamento</Typography>
                         <Typography variant="h6"> <strong>R$ 2.568</strong> </Typography>
                     </Box>
                     <Button variant="outlined" size="small">Detalhes</Button>
                 </Box>
-                <Typography className={style.captionLostChart}> 2.1% ao mês anterior </Typography>
+                <Typography className={style.captionLost}> 2.1% ao mês anterior </Typography>
                 <Box sx={{ height: '165px', mt: 2 }}>
                     <Line data={lineData} options={lineOptions} />
                 </Box>
-                <Box sx={{ gap: 5 }} className={style.containerInforChartsMonth}>
-                    <Box>
-                        <Box className={style.inforchartsMonth}>
-                            <Box className={`${style.chartsMonthShape} ${style.current}`} />
+                <Box sx={{ gap: 5 }} className={style.flexBoxLeft}>
+                    <Box className={style.textCenter}>
+                        <Box className={style.flexLeft}>
+                            <Box className={`${style.monthCircle} ${style.current}`} />
                             <Typography>Atual</Typography>
                         </Box>
                     </Box>
 
-                    <Box>
-                        <Box className={style.inforchartsMonth}>
-                            <Box className={`${style.chartsMonthShape} ${style.previous}`} />
+                    <Box className={style.textCenter}>
+                        <Box className={style.flexLeft}>
+                            <Box className={`${style.monthCircle} ${style.previous}`} />
                             <Typography>Mês anterior</Typography>
                         </Box>
                     </Box>
