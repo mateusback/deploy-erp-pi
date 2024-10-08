@@ -167,6 +167,11 @@
     align-items: center;
 }
 
+.commonBoxStyles {
+    padding: 16px !important;
+    height: 100% !important;
+}
+
 .chartsTitles {
     display: flex;
     color: #000101;
@@ -184,7 +189,7 @@
     font-size: small !important;
     font-weight: 600 !important;
     color: #808181 !important;
-    margin-top: 1.5rem !important;
+    margin-top: 1rem !important;
 }
 
 .captionCharts {
@@ -194,8 +199,47 @@
     color: #808181 !important;
 }
 
+
+.containerInforChartsMonth {
+    display: flex !important;
+    justify-content: flex-start !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.1rem !important;
+}
+
+.inforchartsMonth {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.chartsMonthShape {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    margin-right: 1rem !important;
+    margin-left: 1rem !important;
+}
+
+.chartsMonthShape.current {
+    background-color: #3f51b5 !important;
+}
+
+.chartsMonthShape.previous {
+    background-color: #e0e0e0 !important;
+}
+
 .captionLostChart {
     color: red !important;
+}
+
+.containerListSellsAvatar {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.listSellsAvatarColor {
+    background-color: #f0f0f0 !important;
 }
 
 .commonBoxTable {
@@ -255,6 +299,10 @@
         padding: 1rem 0 1rem 0 !important;
         border: none !important;
         border-bottom: 1px solid #e0e0e0 !important;
+    }
+
+    .containerInforChartsMonth {
+        justify-content: center !important;
     }
 }
 
