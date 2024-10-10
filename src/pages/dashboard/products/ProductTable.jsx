@@ -1,5 +1,6 @@
+import AlertDelete from './ConfirmDeleteBox';
+import { getAllProducts } from '../../../services/ProductService';
 import React, { useEffect, useState } from 'react';
-import { deleteProduct, getAllProducts } from '../../../services/ProductService';
 import style from '../Index.module.css';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -9,7 +10,7 @@ import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { Delete, Edit } from '@mui/icons-material';
-import { Button, ButtonGroup, Tooltip, Typography, IconButton, TableCell, CircularProgress } from '@mui/material';
+import { ButtonGroup, Tooltip, Typography, IconButton, TableCell, CircularProgress } from '@mui/material';
 
 const setStatusColor = (status) => {
     return status === 'Ativo' ? 'green' : 'red';
@@ -18,6 +19,8 @@ const setStatusColor = (status) => {
 const ProductTable = () => {
     const [produtos, setProdutos] = useState([]);
     const [loading, setLoading] = useState(true);
+    const [productToDelete, setProductToDelete] = useState(null);
+    const [openAlert, setOpenAlert] = useState(false);
 
     const fetchProducts = async () => {
         setLoading(true);
@@ -31,21 +34,19 @@ const ProductTable = () => {
         }
     };
 
-    const handleDelete = async (id) => {
-        const confirmDelete = window.confirm("Tem certeza que deseja excluir este produto?");
-        if (confirmDelete) {
-            try {
-                await deleteProduct(id);
-                fetchProducts();
-            } catch (error) {
-                console.error('Erro ao excluir o produto:', error);
-            }
-        }
-    };
-
     useEffect(() => {
         fetchProducts();
     }, []);
+
+    const handleDeleteClick = (id, product) => {
+        setProductToDelete({ id, product });
+        setOpenAlert(true);
+    };
+
+    const handleCloseAlert = () => {
+        setOpenAlert(false);
+        setProductToDelete(null);
+    };
 
     const renderTableContent = () => {
         if (loading) {
@@ -87,15 +88,15 @@ const ProductTable = () => {
                 <TableCell align="right">
                     <ButtonGroup disableElevation variant="contained" aria-label="Botões de ação">
                         <Tooltip title="Editar" arrow>
-                            <Button aria-label="Botões de editar" className={style.tableButtonEdit}>
+                            <IconButton className={style.tableButtonEdit}>
                                 <Edit />
-                            </Button>
+                            </IconButton>
                         </Tooltip>
                         <Tooltip title="Excluir" arrow>
                             <IconButton
                                 aria-label={`Botão de deletar ${produto.product}`}
                                 className={style.tableButtonDelete}
-                                onClick={() => handleDelete(produto.id)}
+                                onClick={() => handleDeleteClick(produto.id, produto.product)}
                             >
                                 <Delete />
                             </IconButton>
@@ -107,22 +108,32 @@ const ProductTable = () => {
     };
 
     return (
-        <TableContainer className={style.tableContainer} component={Paper}>
-            <Table sx={{ minWidth: 650 }} aria-label="table">
-                <TableHead className={style.tableHeader}>
-                    <TableRow>
-                        <TableCell>Produto</TableCell>
-                        <TableCell align="right">Categoria</TableCell>
-                        <TableCell align="right">Preço</TableCell>
-                        <TableCell align="right">Status</TableCell>
-                        <TableCell align="right">Ações</TableCell>
-                    </TableRow>
-                </TableHead>
-                <TableBody>
-                    {renderTableContent()}
-                </TableBody>
-            </Table>
-        </TableContainer>
+        <React.Fragment>
+            <TableContainer className={style.tableContainer} component={Paper}>
+                <Table sx={{ minWidth: 650 }} aria-label="table">
+                    <TableHead className={style.tableHeader}>
+                        <TableRow>
+                            <TableCell>Produto</TableCell>
+                            <TableCell align="right">Categoria</TableCell>
+                            <TableCell align="right">Preço</TableCell>
+                            <TableCell align="right">Status</TableCell>
+                            <TableCell align="right">Ações</TableCell>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody>{renderTableContent()}</TableBody>
+                </Table>
+            </TableContainer>
+
+            {productToDelete && (
+                <AlertDelete
+                    id={productToDelete.id}
+                    product={productToDelete.product}
+                    fetchProducts={fetchProducts}
+                    open={openAlert}
+                    onClose={handleCloseAlert}
+                />
+            )}
+        </React.Fragment>
     );
 };
 

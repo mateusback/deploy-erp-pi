@@ -2,7 +2,7 @@ import style from './Header.module.css';
 import { headerStyles } from './headerStyles';
 
 import React from 'react';
-import { AppBar, Toolbar, IconButton } from '@mui/material';
+import { AppBar, Toolbar, IconButton, Box } from '@mui/material';
 import MenuOpenIcon from '@mui/icons-material/MenuOpen';
 import ButtonProfile from './HeaderContent/ProfileButton';
 import Search from './HeaderContent/Search';
@@ -22,26 +22,27 @@ const Header = ({ isSidebarOpen, toggleSidebar }) => {
         <AppBar
             position="fixed"
             sx={config.appBar}
-            className={clsx(style.topbar,
-                { 'expanded': isSidebarOpen, 'collapsed': !isSidebarOpen })}
+            className={clsx(style.topbar, { 'expanded': isSidebarOpen, 'collapsed': !isSidebarOpen })}
         >
-            <Toolbar sx={config.toolbar}>
-                <IconButton
-                    edge="start"
-                    color="inherit"
-                    aria-label="menu"
-                    onClick={toggleSidebar}
-                    sx={config.iconButton}
-                >
-                    {isSidebarOpen ? <MenuOpenIcon /> : <MenuIcon />}
-                </IconButton>
+            <Toolbar sx={config.toolbar} className={style.toolbar}>
+                <Box>
+                    <IconButton
+                        edge="start"
+                        color="inherit"
+                        aria-label="menu"
+                        onClick={toggleSidebar}
+                        sx={config.iconButton}
+                    >
+                        {isSidebarOpen ? <MenuOpenIcon /> : <MenuIcon />}
+                    </IconButton>
+                </Box>
                 <Search />
-                <div className={style.buttonsContainer}>
+                <Box className={style.buttonsContainer}>
                     <ButtonProfile />
                     <Notification />
-                </div>
+                </Box>
             </Toolbar>
-        </AppBar >
+        </AppBar>
     );
 };
 

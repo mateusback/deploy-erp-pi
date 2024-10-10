@@ -90,6 +90,219 @@
     ;
 }
 
+.newproductContainer {
+    width: 100%;
+    padding: 5px 20px 5px;
+    border-radius: 1vh;
+    justify-content: space-between;
+    background-color: var(--background-container);
+}
+
+.uploadContainer {
+    display: flex;
+    height: 55vh !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: solid 1px #dbdbdb;
+    border-radius: 1vh;
+}
+
+.uploadContainer .specifications {
+    font-size: 0.875rem;
+    text-align: center;
+    margin-bottom: 5px;
+}
+
+.uploadContainer .specifications p {
+    margin-bottom: 0.1rem;
+}
+
+.saveNewProductButton {
+    width: 20%;
+    max-width: 50%;
+    padding: 10px !important;
+    color: var(--text-white) !important;
+    border-radius: 10px !important;
+    background-color: var(--button-color) !important;
+}
+
+.backLink {
+    width: 40px;
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+    color: blue;
+    text-decoration: none;
+    padding: 0 0 1rem 0;
+}
+
+.backLink:hover {
+    color: darkblue;
+}
+
+.alert {
+    width: 90%;
+    max-width: 500px;
+    position: fixed;
+    top: 5.5%;
+    right: 5%;
+    transform: translateX(-50%);
+    margin-top: 1rem;
+    z-index: 1050;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+    opacity: 1;
+}
+
+.alert.hidden {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+}
+
+.ActiveCheckbox {
+    display: flex;
+    margin-top: 1.6rem;
+    margin-left: 0.5rem;
+    align-items: center;
+}
+
+.commonBoxStyles {
+    padding: 16px !important;
+    height: 100% !important;
+}
+
+.chartTitle {
+    display: flex;
+    color: #000101;
+    justify-content: space-between;
+    font-size: 1rem;
+}
+
+.salesCaption {
+    font-size: small !important;
+    font-weight: 500 !important;
+    color: #625456 !important;
+    margin-top: 1rem !important;
+}
+
+.chartCaption {
+    margin-top: 5px !important;
+    font-size: small !important;
+    font-weight: 500 !important;
+    color: #625456 !important;
+}
+
+.flexBoxLeft {
+    display: flex !important;
+    justify-content: flex-start !important;
+    margin-top: 1rem !important;
+    margin-bottom: 0.1rem !important;
+}
+
+.flexLeft {
+    display: flex;
+    align-items: center;
+}
+
+.textLeft {
+    text-align: start;
+}
+
+.monthCircle {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    margin-right: 1rem !important;
+    margin-left: 1rem !important;
+}
+
+.monthCircle.current {
+    background-color: #3f51b5 !important;
+}
+
+.monthCircle.previous {
+    background-color: #e0e0e0 !important;
+}
+
+.flexBoxCenter {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-around !important;
+    margin-top: 32px !important;
+}
+
+.textCenter {
+    text-align: center !important;
+}
+
+.flexCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.circleDoughnut {
+    width: 10px !important;
+    height: 10px !important;
+    border-radius: 50% !important;
+    margin-right: 8px !important;
+}
+
+.circleDoughnut.afternoon {
+    background-color: #5C6BC0;
+}
+
+.circleDoughnut.night {
+    background-color: #7986CB;
+}
+
+.circleDoughnut.morning {
+    background-color: #9FA8DA;
+}
+
+.flexRowCenter {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+}
+
+.percentText {
+    margin-left: 4px;
+}
+
+.captionLost {
+    color: red !important;
+}
+
+.listItensMostSales {
+    display: flex !important;
+    justify-content: space-between !important;
+}
+
+.containerListSalesAvatar {
+    display: flex !important;
+    align-items: center !important;
+}
+
+.listSalesAvatarColor {
+    background-color: #f0f0f0 !important;
+}
+
+.commonBoxTable {
+    border-top: 1px solid #e0e0e0 !important;
+    border-radius: 1px !important;
+}
+
+
+.containerHeaderCharts {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+}
+
+
 @media screen and (max-width: 768px) {
     .productButtons {
         display: none;
@@ -121,6 +334,23 @@
         border: 1px solid var(--button-color) !important;
         margin: 0 8px !important;
         color: var(--button-color) !important;
+    }
+
+    .ActiveCheckbox {
+        display: flex !important;
+        margin-top: 0 !important;
+        margin-left: 0 !important;
+        justify-content: center !important;
+    }
+
+    .borderTableBottomMobile {
+        padding: 1rem 0 1rem 0 !important;
+        border: none !important;
+        border-bottom: 1px solid #e0e0e0 !important;
+    }
+
+    .flexBoxLeft {
+        justify-content: center !important;
     }
 }
 

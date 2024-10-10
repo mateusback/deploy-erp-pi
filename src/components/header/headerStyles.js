@@ -16,7 +16,7 @@ export const headerStyles = (isMobile, isSidebarOpen, theme) => ({
         justifyContent: 'space-between',
     },
     iconButton: {
-        marginRight: theme.spacing(2),
+        marginRight: '1px',
     },
 });
 
@@ -27,13 +27,11 @@ export const CustomInput = styled(InputBase)(({ theme }) => ({
     },
     '& .MuiInputBase-input': {
         borderRadius: 5,
-        position: 'relative',
         backgroundColor: '#F3F6F9',
         border: 'none',
         borderColor: '#E0E3E7',
         fontSize: 16,
-        width: '100%',
-        padding: '10px 12px',
+        padding: '10px 10px',
         transition: theme.transitions.create([
             'border-color',
             'background-color',

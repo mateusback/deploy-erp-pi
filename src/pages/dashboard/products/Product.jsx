@@ -15,7 +15,7 @@ const Products = () => {
     return (
         <>
             <div className={style.productHeader}>
-                <p className={style.productTitle}>Produtos</p>
+                <p className={style.productTitle}>Lista Produtos</p>
                 <div className={style.productButtons}>
                     <Button className={style.buttonFilterProduct} startIcon={<FilterAltIcon />}>
                         Filtro
@@ -23,6 +23,7 @@ const Products = () => {
                     <Button className={style.buttonCreateProduct} startIcon={<AddIcon />} onClick={toCreateProduct}>
                         Adicionar Produto
                     </Button>
+
                 </div>
 
                 <div className={style.mobileButtons}>
