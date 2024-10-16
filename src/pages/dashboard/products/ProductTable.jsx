@@ -26,7 +26,8 @@ const ProductTable = () => {
         setLoading(true);
         try {
             const products = await getAllProducts();
-            setProdutos(products);
+            console.log(products);
+            setProdutos(products.content);
         } catch (error) {
             console.error('Erro ao buscar produtos:', error);
         } finally {
