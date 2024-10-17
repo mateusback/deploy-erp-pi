@@ -1,26 +1,12 @@
 import React, { useState } from 'react';
-import { styled } from '@mui/system';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import { Box, Checkbox, FormControlLabel, Typography, Button, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
+import { Box, Checkbox, FormControlLabel, Typography, Button, Grid, InputLabel, MenuItem, Select, TextField, Tooltip } from '@mui/material';
 import style from '../Index.module.css';
 import { ArrowBackIosOutlined } from '@mui/icons-material';
 import { Link, useNavigate } from 'react-router-dom';
 import { save } from '../../../services/ProductService';
 import { toast } from 'react-toastify';
-
-const UploadBox = styled(Box)({
-    border: '2px dashed #dbdbdb',
-    borderRadius: '50%',
-    width: '170px',
-    height: '170px',
-    display: 'flex',
-    justifyContent: 'center',
-    alignItems: 'center',
-    cursor: 'pointer',
-    backgroundColor: '#f5f5f5',
-    position: 'relative',
-    overflow: 'hidden',
-});
+import { COLORS, UploadBox } from './TableCustom';
 
 const ProductCreation = () => {
     const navigate = useNavigate();
@@ -49,7 +35,18 @@ const ProductCreation = () => {
         navigate(-1);
     };
 
+    const handleCheckboxChange = (e) => {
+        const checked = e.target.checked;
+        setStatus(checked);
+        console.log("Checkbox status:", checked);
+    };
+
     const handleSaveClick = async () => {
+
+        if (!nome || !categoria || !preco || !imagem) {
+            toast.error("Todos os campos obrigatórios * devem ser preenchidos.");
+            return;
+        }
 
         const reader = new FileReader();
         reader.onloadend = async () => {
@@ -62,8 +59,11 @@ const ProductCreation = () => {
                 detalhes,
                 preco: Number(preco),
                 status,
-                imagem: base64Image, 
+                imagem: base64Image,
             };
+
+            console.log(productData);
+
 
             try {
                 await save(productData);
@@ -104,9 +104,9 @@ const ProductCreation = () => {
                                 onClick={() => document.getElementById('imageUpload').click()}
                             >
                                 {imagePreview ? (
-                                    <img src={imagePreview} alt="Prévia" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                    <img src={imagePreview} alt="Prévia" className={style.imagePreview} />
                                 ) : (
-                                    <AddAPhotoIcon fontSize="large" sx={{ color: '#9e9e9e' }} />
+                                    <AddAPhotoIcon fontSize="large" sx={{ color: COLORS.icon }} />
                                 )}
                             </UploadBox>
                             <input
@@ -125,6 +125,7 @@ const ProductCreation = () => {
                                 <strong>2MB</strong>
                             </Typography>
                         </Box>
+                        <p className={style.requiredImage}>O campo de imagem é obrigatório.</p>
                     </Grid>
 
                     <Grid item xs={12} md={8}>
@@ -139,7 +140,7 @@ const ProductCreation = () => {
                                 />
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <InputLabel required><strong>Código</strong></InputLabel>
+                                <InputLabel><strong>Código</strong></InputLabel>
                                 <TextField
                                     fullWidth
                                     variant="outlined"
@@ -162,7 +163,7 @@ const ProductCreation = () => {
                                 </Select>
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <InputLabel required><strong>Detalhes</strong></InputLabel>
+                                <InputLabel><strong>Detalhes</strong></InputLabel>
                                 <TextField
                                     fullWidth
                                     variant="outlined"
@@ -184,12 +185,13 @@ const ProductCreation = () => {
                                 />
                             </Grid>
                             <Grid item xs={12} md={6}>
-                                <FormControlLabel
-                                    required
-                                    className={style.ActiveCheckbox}
-                                    control={<Checkbox checked={status} onChange={(e) => setStatus(e.target.checked)} />}
-                                    label="Ativo"
-                                />
+                                <Tooltip title="Ao marcar como ativo, o produto será exibido para os clientes." arrow>
+                                    <FormControlLabel
+                                        className={style.ActiveCheckbox}
+                                        control={<Checkbox checked={status} onChange={handleCheckboxChange} />}
+                                        label="Ativar produto"
+                                    />
+                                </Tooltip>
                             </Grid>
                         </Grid>
                     </Grid>
