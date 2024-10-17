@@ -11,6 +11,7 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { Delete, Edit } from '@mui/icons-material';
 import { ButtonGroup, Tooltip, Typography, IconButton, TableCell, CircularProgress } from '@mui/material';
+import PaginationTable from './PaginationTable';
 
 const setStatusColor = (status) => {
     return status === 'Ativo' ? 'green' : 'red';
@@ -26,7 +27,6 @@ const ProductTable = () => {
         setLoading(true);
         try {
             const products = await getAllProducts();
-            console.log(products);
             setProdutos(products.content);
         } catch (error) {
             console.error('Erro ao buscar produtos:', error);
@@ -73,38 +73,38 @@ const ProductTable = () => {
         }
 
         return produtos.map((produto) => (
-            <TableRow key={produto.id}>
-                <TableCell className={style.tableNameProduct} component="th" scope="row" style={{ color: produto.status === 'Oculto' ? 'red' : 'inherit' }}>
-                    {produto.id}
-                    <img src={produto.image} className={style.tableProductimg} alt={produto.product} />
-                    {produto.product}
-                </TableCell>
-                <TableCell align="right">{produto.category}</TableCell>
-                <TableCell align="right">
-                    {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto.price)}
-                </TableCell>
-                <TableCell align="right" style={{ color: setStatusColor(produto.status) }}>
-                    {produto.status}
-                </TableCell>
-                <TableCell align="right">
-                    <ButtonGroup disableElevation variant="contained" aria-label="Botões de ação">
-                        <Tooltip title="Editar" arrow>
-                            <IconButton className={style.tableButtonEdit}>
-                                <Edit />
-                            </IconButton>
-                        </Tooltip>
-                        <Tooltip title="Excluir" arrow>
-                            <IconButton
-                                aria-label={`Botão de deletar ${produto.product}`}
-                                className={style.tableButtonDelete}
-                                onClick={() => handleDeleteClick(produto.id, produto.product)}
-                            >
-                                <Delete />
-                            </IconButton>
-                        </Tooltip>
-                    </ButtonGroup>
-                </TableCell>
-            </TableRow>
+                <TableRow key={produto.id}>
+                    <TableCell className={style.tableNameProduct} component="th" scope="row" style={{ color: produto.status === 'Oculto' ? 'red' : 'inherit' }}>
+                        {produto.id}
+                        <img src={produto.image} className={style.tableProductimg} alt={produto.product} />
+                        {produto.product}
+                    </TableCell>
+                    <TableCell align="right">{produto.category}</TableCell>
+                    <TableCell align="right">
+                        {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto.price)}
+                    </TableCell>
+                    <TableCell align="right" style={{ color: setStatusColor(produto.status) }}>
+                        {produto.status}
+                    </TableCell>
+                    <TableCell align="right">
+                        <ButtonGroup disableElevation variant="contained" aria-label="Botões de ação">
+                            <Tooltip title="Editar" arrow>
+                                <IconButton className={style.tableButtonEdit}>
+                                    <Edit />
+                                </IconButton>
+                            </Tooltip>
+                            <Tooltip title="Excluir" arrow>
+                                <IconButton
+                                    aria-label={`Botão de deletar ${produto.product}`}
+                                    className={style.tableButtonDelete}
+                                    onClick={() => handleDeleteClick(produto.id, produto.product)}
+                                >
+                                    <Delete />
+                                </IconButton>
+                            </Tooltip>
+                        </ButtonGroup>
+                    </TableCell>
+                </TableRow >
         ));
     };
 
@@ -123,6 +123,7 @@ const ProductTable = () => {
                     </TableHead>
                     <TableBody>{renderTableContent()}</TableBody>
                 </Table>
+                <PaginationTable />
             </TableContainer>
 
             {productToDelete && (
