@@ -79,7 +79,7 @@ const ProductCreation = () => {
             setImage(null);
             setImagePreview(null);
 
-            navigate('/produtos');
+            navigate('/products');
         } catch (error) {
             toast.error("Erro ao salvar o produto!");
             console.error("Erro ao fazer requisição:", error);
