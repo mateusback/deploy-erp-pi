@@ -1,13 +1,7 @@
 import React, { useState } from 'react';
 import { styled } from '@mui/system';
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
-import { Box, Checkbox, FormControlLabel, Typography } from '@mui/material';
-import { Button } from '@mui/material';
-import { Grid } from '@mui/material';
-import { InputLabel } from '@mui/material';
-import { MenuItem } from '@mui/material';
-import { Select } from '@mui/material';
-import { TextField } from '@mui/material';
+import { Box, Checkbox, FormControlLabel, Typography, Button, Grid, InputLabel, MenuItem, Select, TextField } from '@mui/material';
 import style from '../Index.module.css';
 import { ArrowBackIosOutlined } from '@mui/icons-material';
 import { Link, useNavigate } from 'react-router-dom';
@@ -31,13 +25,13 @@ const UploadBox = styled(Box)({
 const ProductCreation = () => {
     const navigate = useNavigate();
     const [imagePreview, setImagePreview] = useState(null);
-    const [name, setName] = useState('');
-    const [code, setCode] = useState('');
-    const [category, setCategory] = useState('');
-    const [details, setDetails] = useState('');
-    const [price, setPrice] = useState('');
-    const [image, setImage] = useState(null);
-    const [isActive, setIsActive] = useState(false);
+    const [nome, setNome] = useState('');
+    const [codigoListagem, setCodigoListagem] = useState('');
+    const [categoria, setCategoria] = useState('');
+    const [detalhes, setDetalhes] = useState('');
+    const [preco, setPreco] = useState('');
+    const [imagem, setImagem] = useState(null);
+    const [status, setStatus] = useState(false);
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -45,46 +39,55 @@ const ProductCreation = () => {
             const reader = new FileReader();
             reader.onloadend = () => {
                 setImagePreview(reader.result);
+                setImagem(file);
             };
             reader.readAsDataURL(file);
-            setImage(file);
         }
     };
 
     const handleNavigateBack = () => {
         navigate(-1);
-    }
+    };
 
     const handleSaveClick = async () => {
-        const productData = {
-            name,
-            code,
-            category,
-            details,
-            price,
-            isActive,
-            image,
+
+        const reader = new FileReader();
+        reader.onloadend = async () => {
+            const base64Image = reader.result.split(',')[1];
+
+            const productData = {
+                nome,
+                codigoListagem,
+                categoria,
+                detalhes,
+                preco: Number(preco),
+                status,
+                imagem: base64Image, 
+            };
+
+            try {
+                await save(productData);
+                toast.success("Produto salvo com sucesso!");
+
+                // Resetar campos
+                setNome('');
+                setCodigoListagem('');
+                setCategoria('');
+                setDetalhes('');
+                setPreco('');
+                setStatus(false);
+                setImagem(null);
+                setImagePreview(null);
+
+                navigate('/products');
+            } catch (error) {
+                toast.error("Erro ao salvar o produto!");
+                console.error("Erro ao fazer requisição:", error);
+            }
         };
 
-        try {
-            await save(productData);
-            toast.success("Produto salvo com sucesso!");
-
-            setName('');
-            setCode('');
-            setCategory('');
-            setDetails('');
-            setPrice('');
-            setIsActive(false);
-            setImage(null);
-            setImagePreview(null);
-
-            navigate('/produtos');
-        } catch (error) {
-            toast.error("Erro ao salvar o produto!");
-            console.error("Erro ao fazer requisição:", error);
-        }
-    }
+        reader.readAsDataURL(imagem);
+    };
 
     return (
         <>
@@ -92,13 +95,14 @@ const ProductCreation = () => {
                 <ArrowBackIosOutlined fontSize="small" /> Voltar
             </Link>
             <Box className={style.newproductContainer}>
-                < p className={style.productTitle}> Novo Produto</p>
+                <p className={style.productTitle}> Novo Produto</p>
                 <Grid container spacing={4}>
                     <Grid item xs={12} md={4}>
                         <Box className={style.uploadContainer}>
                             <UploadBox
                                 sx={{ mb: 5 }}
-                                onClick={() => document.getElementById('imageUpload').click()}>
+                                onClick={() => document.getElementById('imageUpload').click()}
+                            >
                                 {imagePreview ? (
                                     <img src={imagePreview} alt="Prévia" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                 ) : (
@@ -123,15 +127,15 @@ const ProductCreation = () => {
                         </Box>
                     </Grid>
 
-                    <Grid item xs={16} md={8}>
+                    <Grid item xs={12} md={8}>
                         <Grid container spacing={2}>
                             <Grid item xs={12} md={6}>
                                 <InputLabel required><strong>Nome</strong></InputLabel>
                                 <TextField
                                     fullWidth
                                     variant="outlined"
-                                    value={name}
-                                    onChange={(e) => setName(e.target.value)}
+                                    value={nome}
+                                    onChange={(e) => setNome(e.target.value)}
                                 />
                             </Grid>
                             <Grid item xs={12} md={6}>
@@ -139,8 +143,8 @@ const ProductCreation = () => {
                                 <TextField
                                     fullWidth
                                     variant="outlined"
-                                    value={code}
-                                    onChange={(e) => setCode(e.target.value)}
+                                    value={codigoListagem}
+                                    onChange={(e) => setCodigoListagem(e.target.value)}
                                 />
                             </Grid>
                             <Grid item xs={12} md={6}>
@@ -149,8 +153,8 @@ const ProductCreation = () => {
                                     fullWidth
                                     labelId="category-label"
                                     variant="outlined"
-                                    value={category}
-                                    onChange={(e) => setCategory(e.target.value)}
+                                    value={categoria}
+                                    onChange={(e) => setCategoria(e.target.value)}
                                 >
                                     <MenuItem value=""><em><strong>Selecionar</strong></em></MenuItem>
                                     <MenuItem value={10}>Categoria 1</MenuItem>
@@ -162,8 +166,8 @@ const ProductCreation = () => {
                                 <TextField
                                     fullWidth
                                     variant="outlined"
-                                    value={details}
-                                    onChange={(e) => setDetails(e.target.value)}
+                                    value={detalhes}
+                                    onChange={(e) => setDetalhes(e.target.value)}
                                 />
                             </Grid>
                             <Grid item xs={12} md={6}>
@@ -172,8 +176,8 @@ const ProductCreation = () => {
                                     type="number"
                                     fullWidth
                                     variant="outlined"
-                                    value={price}
-                                    onChange={(e) => setPrice(e.target.value)}
+                                    value={preco}
+                                    onChange={(e) => setPreco(e.target.value)}
                                     InputProps={{
                                         startAdornment: 'R$ ',
                                     }}
@@ -183,12 +187,11 @@ const ProductCreation = () => {
                                 <FormControlLabel
                                     required
                                     className={style.ActiveCheckbox}
-                                    control={<Checkbox checked={isActive} onChange={(e) => setIsActive(e.target.checked)} />}
+                                    control={<Checkbox checked={status} onChange={(e) => setStatus(e.target.checked)} />}
                                     label="Ativo"
                                 />
                             </Grid>
                         </Grid>
-
                     </Grid>
 
                     <Grid item xs={12}>
@@ -202,9 +205,8 @@ const ProductCreation = () => {
                         </Box>
                     </Grid>
                 </Grid>
-            </Box >
+            </Box>
         </>
-
     );
 }
 
