@@ -1,6 +1,6 @@
 import AlertDelete from './ConfirmDeleteBox';
 import { getAllProducts } from '../../../services/ProductService';
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import style from '../Index.module.css';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,11 +11,8 @@ import Paper from '@mui/material/Paper';
 import Box from '@mui/material/Box';
 import { Delete, Edit } from '@mui/icons-material';
 import { ButtonGroup, Tooltip, Typography, IconButton, TableCell, CircularProgress } from '@mui/material';
-import PaginationTable from './PaginationTable';
-
-const setStatusColor = (status) => {
-    return status === 'Ativo' ? 'green' : 'red';
-};
+import TablePagination from '@mui/material/TablePagination';
+import { TablePaginationActions } from './TableCustom';
 
 const ProductTable = () => {
     const [produtos, setProdutos] = useState([]);
@@ -23,11 +20,16 @@ const ProductTable = () => {
     const [productToDelete, setProductToDelete] = useState(null);
     const [openAlert, setOpenAlert] = useState(false);
 
-    const fetchProducts = async () => {
+    const [page, setPage] = useState(0);
+    const [rowsPerPage, setRowsPerPage] = useState(10);
+    const [totalElements, setTotalElements] = useState(0);
+
+    const fetchProducts = async (page = 0, size = 10) => {
         setLoading(true);
         try {
-            const products = await getAllProducts();
-            setProdutos(products.content);
+            const productsData = await getAllProducts(page, size);
+            setProdutos(productsData.content);
+            setTotalElements(productsData.totalElements);
         } catch (error) {
             console.error('Erro ao buscar produtos:', error);
         } finally {
@@ -36,8 +38,8 @@ const ProductTable = () => {
     };
 
     useEffect(() => {
-        fetchProducts();
-    }, []);
+        fetchProducts(page, rowsPerPage);
+    }, [page, rowsPerPage]);
 
     const handleDeleteClick = (id, product) => {
         setProductToDelete({ id, product });
@@ -47,6 +49,20 @@ const ProductTable = () => {
     const handleCloseAlert = () => {
         setOpenAlert(false);
         setProductToDelete(null);
+    };
+
+    const handleChangePage = (event, newPage) => {
+        setPage(newPage);
+    };
+
+    const handleChangeRowsPerPage = (event) => {
+        setRowsPerPage(parseInt(event.target.value, 10));
+        setPage(0);
+    };
+
+
+    const setStatusColor = (status) => {
+        return status ? 'green' : 'red';
     };
 
     const renderTableContent = () => {
@@ -72,19 +88,20 @@ const ProductTable = () => {
             );
         }
 
-        return produtos.map((produto) => (
+        return produtos.map((produto) => {
+            return (
                 <TableRow key={produto.id}>
                     <TableCell className={style.tableNameProduct} component="th" scope="row" style={{ color: produto.status === 'Oculto' ? 'red' : 'inherit' }}>
-                        {produto.id}
-                        <img src={produto.image} className={style.tableProductimg} alt={produto.product} />
-                        {produto.product}
+                        {produto.idProduto}
+                        <img src={produto.imagem ? `data:image/jpeg;base64,${produto.imagem}` : 'https://via.placeholder.com/150'} className={style.tableProductimg} alt={produto.nome} />
+                        {produto.nome}
                     </TableCell>
-                    <TableCell align="right">{produto.category}</TableCell>
+                    <TableCell align="right">{produto.categoria}</TableCell>
                     <TableCell align="right">
-                        {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto.price)}
+                        {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(produto.preco)}
                     </TableCell>
                     <TableCell align="right" style={{ color: setStatusColor(produto.status) }}>
-                        {produto.status}
+                        {produto.status ? 'Ativo' : 'Oculto'}
                     </TableCell>
                     <TableCell align="right">
                         <ButtonGroup disableElevation variant="contained" aria-label="Botões de ação">
@@ -95,21 +112,22 @@ const ProductTable = () => {
                             </Tooltip>
                             <Tooltip title="Excluir" arrow>
                                 <IconButton
-                                    aria-label={`Botão de deletar ${produto.product}`}
+                                    aria-label={`Botão de deletar, produto selecionado: ${produto.nome}`}
                                     className={style.tableButtonDelete}
-                                    onClick={() => handleDeleteClick(produto.id, produto.product)}
+                                    onClick={() => handleDeleteClick(produto.idProduto, produto.nome)}
                                 >
                                     <Delete />
                                 </IconButton>
                             </Tooltip>
                         </ButtonGroup>
                     </TableCell>
-                </TableRow >
-        ));
+                </TableRow>
+            );
+        });
     };
 
     return (
-        <React.Fragment>
+        <Fragment>
             <TableContainer className={style.tableContainer} component={Paper}>
                 <Table sx={{ minWidth: 650 }} aria-label="table">
                     <TableHead className={style.tableHeader}>
@@ -123,7 +141,18 @@ const ProductTable = () => {
                     </TableHead>
                     <TableBody>{renderTableContent()}</TableBody>
                 </Table>
-                <PaginationTable />
+
+                <TablePagination
+                    component="div"
+                    count={totalElements}
+                    page={page}
+                    rowsPerPageOptions={[10, 25, 50]}
+                    onPageChange={handleChangePage}
+                    rowsPerPage={rowsPerPage}
+                    onRowsPerPageChange={handleChangeRowsPerPage}
+                    labelRowsPerPage="Produtos por página"
+                    ActionsComponent={TablePaginationActions}
+                />
             </TableContainer>
 
             {productToDelete && (
@@ -135,7 +164,7 @@ const ProductTable = () => {
                     onClose={handleCloseAlert}
                 />
             )}
-        </React.Fragment>
+        </Fragment>
     );
 };
 

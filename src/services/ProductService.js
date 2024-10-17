@@ -12,14 +12,20 @@ export async function getProductById(id) {
     }
 }
 
-export async function getAllProducts() {
+export async function getAllProducts(page = 0, size = 10) {
     try {
-        const response = await axios.get(`${API_URL}/${URL_CONTROLLER_PRODUCT}/all`);
+        const response = await axios.get(`${API_URL}/${URL_CONTROLLER_PRODUCT}/all`, {
+            params: {
+                page: page,
+                size: size
+            }
+        });
         return response.data;
     } catch (error) {
         throw error;
     }
 }
+
 
 export async function save(data) {
     try {

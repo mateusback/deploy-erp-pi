@@ -193,6 +193,19 @@
     color: #625456 !important;
 }
 
+.imagePreview {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.requiredImage {
+    color: #8d8b8b !important;
+    font-size: small;
+    text-align: center !important;
+    margin-top: 0.5rem !important;
+}
+
 .flexBoxLeft {
     display: flex !important;
     justify-content: flex-start !important;
