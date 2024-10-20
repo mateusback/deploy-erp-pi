@@ -47,7 +47,7 @@ export async function edit(data) {
 
 export async function deleteProduct(id) {
     try {
-        const response = await axios.delete(`${API_URL}/${URL_CONTROLLER_PRODUCT}?id=${id}`);
+        const response = await axios.delete(`${API_URL}/${URL_CONTROLLER_PRODUCT}/${id}`);
         return response.data;
     } catch (error) {
         throw error;
