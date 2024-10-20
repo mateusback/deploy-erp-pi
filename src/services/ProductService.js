@@ -5,7 +5,6 @@ const URL_CONTROLLER_PRODUCT = "v1/produto";
 
 export async function getProductById(id) {
     try {
-        console.log(`${API_URL}/${URL_CONTROLLER_PRODUCT}/${id}`);
         const response = await axios.get(`${API_URL}/${URL_CONTROLLER_PRODUCT}/${id}`);
         return response.data;
     } catch (error) {
