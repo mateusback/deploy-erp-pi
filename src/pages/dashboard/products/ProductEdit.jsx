@@ -74,7 +74,7 @@ const ProductEdit = () => {
             detalhes,
             preco: Number(preco),
             status,
-            imagem: imagem ? null : undefined,
+            imagem: imagem || imagePreview.split(',')[1],
         };
 
         if (imagem) {
