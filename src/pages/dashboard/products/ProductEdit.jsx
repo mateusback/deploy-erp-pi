@@ -21,26 +21,23 @@ const ProductEdit = () => {
     const [imagem, setImagem] = useState(null);
     const [status, setStatus] = useState(false);
 
-
-    // Busca os dados do produto ao montar o componente
     useEffect(() => {
         const fetchProduct = async () => {
             try {
-                const product = await getProductById(productId); // Obtém os dados do produto
+                const product = await getProductById(productId); 
                 setNome(product.nome);
                 setCodigoListagem(product.codigoListagem);
                 setCategoria(product.categoria);
                 setDetalhes(product.detalhes);
                 setPreco(product.preco);
                 setStatus(product.status);
-                setImagePreview(`data:image/png;base64,${product.imagem}`); // Exibe a imagem se houver
+                setImagePreview(`data:image/png;base64,${product.imagem}`);
             } catch (error) {
-                console.error("Erro ao buscar o produto:", error);
                 toast.error("Erro ao carregar o produto.");
             }
         };
         fetchProduct();
-    }, [productId]); // Executa quando o id muda
+    }, [productId]);
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -61,7 +58,6 @@ const ProductEdit = () => {
     const handleCheckboxChange = (e) => {
         const checked = e.target.checked;
         setStatus(checked);
-        console.log("Checkbox status:", checked);
     };
 
     const handleSaveClick = async () => {
@@ -71,14 +67,14 @@ const ProductEdit = () => {
         }
 
         const productData = {
-            productId, // Inclui o ID do produto para atualizar
+            idProduto: productId,
             nome,
             codigoListagem,
             categoria,
             detalhes,
             preco: Number(preco),
             status,
-            imagem: imagem ? null : undefined, // Atualiza a imagem apenas se for uma nova
+            imagem: imagem ? null : undefined,
         };
 
         if (imagem) {
@@ -87,23 +83,21 @@ const ProductEdit = () => {
                 productData.imagem = reader.result.split(',')[1];
 
                 try {
-                    await edit(productData); // Chama a função de atualização
+                    await edit(productData);
                     toast.success("Produto atualizado com sucesso!");
                     navigate('/products');
                 } catch (error) {
                     toast.error("Erro ao atualizar o produto!");
-                    console.error("Erro ao fazer requisição:", error);
                 }
             };
             reader.readAsDataURL(imagem);
         } else {
             try {
-                await edit(productData); // Atualiza o produto sem alterar a imagem
+                await edit(productData);
                 toast.success("Produto atualizado com sucesso!");
                 navigate('/products');
             } catch (error) {
                 toast.error("Erro ao atualizar o produto!");
-                console.error("Erro ao fazer requisição:", error);
             }
         }
     };
@@ -177,8 +171,8 @@ const ProductEdit = () => {
                                     onChange={(e) => setCategoria(e.target.value)}
                                 >
                                     <MenuItem value=""><em><strong>Selecionar</strong></em></MenuItem>
-                                    <MenuItem value={10}>Categoria 1</MenuItem>
-                                    <MenuItem value={20}>Categoria 2</MenuItem>
+                                    <MenuItem value={1}>Categoria 1</MenuItem>
+                                    <MenuItem value={2}>Categoria 2</MenuItem>
                                 </Select>
                             </Grid>
                             <Grid item xs={12} md={6}>
