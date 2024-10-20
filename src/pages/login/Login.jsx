@@ -32,7 +32,6 @@ const Login = () => {
             navigate("/dashboard");
         } catch (error) {
             toast.error("Email e/ou senha inválido(s).");
-            console.error("Erro ao fazer requisição:", error);
         }
     };
 

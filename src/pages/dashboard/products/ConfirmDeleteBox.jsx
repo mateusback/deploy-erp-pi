@@ -9,6 +9,7 @@ import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
 import { deleteProduct } from '../../../services/ProductService';
+import { toast } from 'react-toastify';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
     '& .MuiDialogContent-root': {
@@ -23,11 +24,10 @@ export default function Alert({ id, product, fetchProducts, open, onClose }) {
     const handleDelete = async () => {
         try {
             await deleteProduct(id);
-            <Alert severity="success" onClose={() => { }}>Produto deletado com sucesso!</Alert>
+            toast.success('Produto deletado com sucesso!');
             fetchProducts();
         } catch (error) {
-            <Alert severity="error" onClose={() => { }}> Erro ao excluir o produto!</Alert>
-            console.error('Erro ao excluir o produto:', error);
+            toast.error('Erro ao excluir o produto!');
         } finally {
             onClose();
         }
