@@ -97,3 +97,10 @@ const Dashboard = () => {
 };
 
 export default Dashboard;
+
+
+/*
+TODO:
+Ajustar deletar, editar, Listagem do preço.
+
+*/
