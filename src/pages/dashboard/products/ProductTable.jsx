@@ -13,8 +13,11 @@ import { Delete, Edit } from '@mui/icons-material';
 import { ButtonGroup, Tooltip, Typography, IconButton, TableCell, CircularProgress } from '@mui/material';
 import TablePagination from '@mui/material/TablePagination';
 import { TablePaginationActions } from './TableCustom';
+import { useNavigate } from 'react-router-dom';
 
 const ProductTable = () => {
+    const navigate = useNavigate();
+
     const [produtos, setProdutos] = useState([]);
     const [loading, setLoading] = useState(true);
     const [productToDelete, setProductToDelete] = useState(null);
@@ -44,6 +47,11 @@ const ProductTable = () => {
     const handleDeleteClick = (id, product) => {
         setProductToDelete({ id, product });
         setOpenAlert(true);
+    };
+
+    const handleEditClick = (productId) => {
+        console.log('productId', productId);
+        navigate('/edit-product', { state: { productId } });
     };
 
     const handleCloseAlert = () => {
@@ -106,7 +114,9 @@ const ProductTable = () => {
                     <TableCell align="right">
                         <ButtonGroup disableElevation variant="contained" aria-label="Botões de ação">
                             <Tooltip title="Editar" arrow>
-                                <IconButton className={style.tableButtonEdit}>
+                                <IconButton 
+                                    className={style.tableButtonEdit} 
+                                    onClick={() => handleEditClick(produto.idProduto)}>
                                     <Edit />
                                 </IconButton>
                             </Tooltip>

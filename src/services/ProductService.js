@@ -29,7 +29,7 @@ export async function getAllProducts(page = 0, size = 10) {
 
 export async function save(data) {
     try {
-        const response = await axios.post(`${API_URL}/${URL_CONTROLLER_PRODUCT}`, data);
+        const response = await axios.post(`${API_URL}/${URL_CONTROLLER_PRODUCT}/edit`, data);
         return response.data;
     } catch (error) {
         throw error;
@@ -47,7 +47,7 @@ export async function edit(data) {
 
 export async function deleteProduct(id) {
     try {
-        const response = await axios.delete(`${API_URL}/${URL_CONTROLLER_PRODUCT}?id=${id}`);
+        const response = await axios.delete(`${API_URL}/${URL_CONTROLLER_PRODUCT}/${id}`);
         return response.data;
     } catch (error) {
         throw error;

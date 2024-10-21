@@ -12,6 +12,7 @@ import Commands from './pages/dashboard/commands/Commands';
 import ProductCreation from './pages/dashboard/products/ProductCreation';
 import Index from './pages/dashboard/Index';
 import Wallet from './pages/dashboard/wallet/Wallet';
+import ProductEdit from './pages/dashboard/products/ProductEdit';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path='/dashboard' element={<DashboardLayout><Index /></DashboardLayout>} />
           <Route path='/products' element={<DashboardLayout><Products /></DashboardLayout>} />
           <Route path='/new-product' element={<DashboardLayout><ProductCreation /></DashboardLayout>} />
+          <Route path='/edit-product' element={<DashboardLayout><ProductEdit /></DashboardLayout>} />
           <Route path='/balcon' element={<DashboardLayout><Balcon /></DashboardLayout>} />
           <Route path='/wallet' element={<DashboardLayout><Wallet /></DashboardLayout>} />
           <Route path='/commands' element={<DashboardLayout><Commands /></DashboardLayout>} />
