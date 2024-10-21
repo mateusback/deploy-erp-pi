@@ -25,6 +25,7 @@ const ButtonProfile = () => {
         setAnchorEl(null);
     };
     const handleLogout = () => {
+        localStorage.removeItem('token');
         navigate('/');
     };
 
