@@ -158,8 +158,8 @@ const ProductCreation = () => {
                                     onChange={(e) => setCategoria(e.target.value)}
                                 >
                                     <MenuItem value=""><em><strong>Selecionar</strong></em></MenuItem>
-                                    <MenuItem value={10}>Categoria 1</MenuItem>
-                                    <MenuItem value={20}>Categoria 2</MenuItem>
+                                    <MenuItem value={1}>Categoria 1</MenuItem>
+                                    <MenuItem value={2}>Categoria 2</MenuItem>
                                 </Select>
                             </Grid>
                             <Grid item xs={12} md={6}>
