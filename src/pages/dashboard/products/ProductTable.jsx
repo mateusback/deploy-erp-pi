@@ -49,9 +49,8 @@ const ProductTable = () => {
         setOpenAlert(true);
     };
 
-    const handleEditClick = (productId) => {
-        console.log('productId', productId);
-        navigate('/edit-product', { state: { productId } });
+    const handleEditClick = (produto) => {
+        navigate('/edit-product', { state: { produto } });
     };
 
     const handleCloseAlert = () => {
@@ -116,7 +115,8 @@ const ProductTable = () => {
                             <Tooltip title="Editar" arrow>
                                 <IconButton 
                                     className={style.tableButtonEdit} 
-                                    onClick={() => handleEditClick(produto.idProduto)}>
+                                    onClick={() => handleEditClick(produto)}
+                                >
                                     <Edit />
                                 </IconButton>
                             </Tooltip>
