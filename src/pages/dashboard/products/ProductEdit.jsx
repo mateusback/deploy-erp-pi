@@ -4,13 +4,13 @@ import { Box, Checkbox, FormControlLabel, Typography, Button, Grid, InputLabel, 
 import style from '../Index.module.css';
 import { ArrowBackIosOutlined } from '@mui/icons-material';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { getProductById, edit } from '../../../services/ProductService';
+import { edit } from '../../../services/ProductService';
 import { toast } from 'react-toastify';
 import { COLORS, UploadBox } from './TableCustom';
 
 const ProductEdit = () => {
     const location = useLocation();
-    const { productId } = location.state || {}; 
+    const { produto } = location.state || {}; 
     const navigate = useNavigate();
     const [imagePreview, setImagePreview] = useState(null);
     const [nome, setNome] = useState('');
@@ -22,22 +22,16 @@ const ProductEdit = () => {
     const [status, setStatus] = useState(false);
 
     useEffect(() => {
-        const fetchProduct = async () => {
-            try {
-                const product = await getProductById(productId); 
-                setNome(product.nome);
-                setCodigoListagem(product.codigoListagem);
-                setCategoria(product.categoria);
-                setDetalhes(product.detalhes);
-                setPreco(product.preco);
-                setStatus(product.status);
-                setImagePreview(`data:image/png;base64,${product.imagem}`);
-            } catch (error) {
-                toast.error("Erro ao carregar o produto.");
-            }
-        };
-        fetchProduct();
-    }, [productId]);
+        if (produto) {
+            setNome(produto.nome);
+            setCodigoListagem(produto.codigoListagem);
+            setCategoria(produto.categoria);
+            setDetalhes(produto.detalhes);
+            setPreco(produto.preco);
+            setStatus(produto.status);
+            setImagePreview(`data:image/png;base64,${produto.imagem}`);
+        }
+    }, [produto]);
 
     const handleImageChange = (event) => {
         const file = event.target.files[0];
@@ -67,7 +61,7 @@ const ProductEdit = () => {
         }
 
         const productData = {
-            idProduto: productId,
+            idProduto: produto.idProduto,
             nome,
             codigoListagem,
             categoria,
