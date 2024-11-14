@@ -8,11 +8,12 @@ import DashboardLayout from './components/layout/DashboardLayout';
 import Cadastre from './pages/cadastre/Cadastre';
 import Products from './pages/dashboard/products/Product';
 import Balcon from './pages/dashboard/balcon/Balcon';
-import Commands from './pages/dashboard/commands/Commands';
+import Commands from './pages/commands/Commands';
 import ProductCreation from './pages/dashboard/products/ProductCreation';
 import Index from './pages/dashboard/Index';
 import Wallet from './pages/dashboard/wallet/Wallet';
 import ProductEdit from './pages/dashboard/products/ProductEdit';
+import NewItem from './pages/commands/NewItem';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
           <Route path='/balcon' element={<DashboardLayout><Balcon /></DashboardLayout>} />
           <Route path='/wallet' element={<DashboardLayout><Wallet /></DashboardLayout>} />
           <Route path='/commands' element={<DashboardLayout><Commands /></DashboardLayout>} />
+          <Route path='/new-item' element={<DashboardLayout><NewItem /></DashboardLayout>} />
         </Routes>
       </BrowserRouter>
     </>
