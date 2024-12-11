@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { Card, CardContent, CardMedia, Typography, Grid, TextField, InputAdornment, IconButton, Box, Button, Tooltip } from '@mui/material';
+import { Card, CardContent, CardMedia, Typography, Grid, TextField, InputAdornment, IconButton, Box, Button, Tooltip, Divider, ButtonGroup } from '@mui/material';
 import { getAllProducts } from "../../services/ProductService";
-import { Search, Delete, Edit } from "@mui/icons-material";
+import { Search, Delete, Edit, ArrowRightAltOutlined } from "@mui/icons-material";
 import style from './command.module.css'
 
 const ProdutoCard = ({ nome, preco, imagem }) => (
@@ -26,6 +26,17 @@ const ProdutoCard = ({ nome, preco, imagem }) => (
 const ResumoComanda = () => (
     <Box className={style.boxTickets}>
         <Typography className={style.tickeTittle} sx={{ mb: 1 }} variant="h6">Comanda 4</Typography>
+        <Box className={style.boxTittleComanda}>
+            <ButtonGroup
+                fullWidth
+                disableElevation
+                variant="contained"
+                aria-label="Disabled button group"
+            >
+                <Button className={style.buttonWidth}>Resumo</Button>
+                <Button className={style.buttonWidth} disabled>Pagamento</Button>
+            </ButtonGroup>
+        </Box>
         <Box className={style.boxItens}>
             <Grid container alignItems="center" spacing={2}>
                 <Grid item xs={1}>
@@ -38,6 +49,7 @@ const ResumoComanda = () => (
                 <Grid item xs={2}>
                     <Typography variant="body2" align="right">R$ 48,00</Typography>
                 </Grid>
+                <Divider></Divider>
                 <Grid item xs={2}>
                     <Box display="flex" justifyContent="center" gap={1}>
                         <Tooltip title="Editar" arrow>
@@ -54,17 +66,22 @@ const ResumoComanda = () => (
                 </Grid>
             </Grid>
         </Box>
-        <Box>
+        <Box className={style.boxInformation}>
             <Typography variant="subtitle1" gutterBottom><strong>Subtotal: </strong>R$ 48,00</Typography>
             <TextField
                 fullWidth
                 size="small"
                 placeholder="Digite alguma observação no pedido"
-                sx={{ mb: 2, backgroundColor: '#fff', borderRadius: 1 }}
+                sx={{ mb: 1, backgroundColor: '#fff', borderRadius: 1 }}
                 InputProps={{ style: { color: '#333' } }}
             />
-            <Button variant="contained" className={style.buttonSend} fullWidth>
+            <Typography className={style.subTittle} gutterBottom>DESTINO DESTE PRODUTO</Typography>
+
+        </Box>
+        <Box className={style.boxButton}>
+            <Button variant="contained" className={style.buttonSend}>
                 Colocar na Comanda
+                <ArrowRightAltOutlined />
             </Button>
         </Box>
     </Box >

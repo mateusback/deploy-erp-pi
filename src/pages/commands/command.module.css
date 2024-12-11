@@ -5,6 +5,18 @@
     padding: 15px;
 }
 
+.boxTittleComanda {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 15px;
+}
+
+.buttonWidth {
+    border: none !important;
+    background-color: var(--button-color) !important;
+}
+
 .tickeTittle {
     color: var(--button-color);
 }
@@ -15,8 +27,18 @@
     background-color: transparent !important;
 }
 
+.boxButton {
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+}
+
+.subTittle {
+    font-size: small !important;
+}
+
 .buttonSend {
-    background-color: var(--button-color);
+    background-color: var(--button-color) !important;
 }
 
 .boxItens {
