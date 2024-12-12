@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import './Commands.css';
+import { save } from '../../services/CommandsService';
+import { toast } from 'react-toastify';
 
 const Commands = () => {
     const [comandasEmFechamento] = useState(['Comanda 1', 'Comanda 2', 'Comanda 3']);
@@ -7,8 +9,8 @@ const Commands = () => {
 
     const [modalAberto, setModalAberto] = useState(false);
 
-    const [nomeCliente, setNomeCliente] = useState('');
-    const [observacao, setObservacao] = useState('');
+    const [nome, setNome] = useState('');
+    const [descricao, setDescricao] = useState('');
 
     const abrirModal = () => {
         setModalAberto(true);
@@ -16,12 +18,26 @@ const Commands = () => {
 
     const fecharModal = () => {
         setModalAberto(false);
-        setNomeCliente('');
-        setObservacao('');
+        setNome('');
+        setDescricao('');
     };
 
-    const abrirComanda = () => {
-        console.log("Comanda aberta:", { nomeCliente, observacao });
+    const abrirComanda = async () => {
+        const commandData = {
+            nome,
+            descricao,
+        };
+
+        console.log(commandData);
+
+        try {
+            await save(commandData);
+            toast.success("Comanda salva com sucesso!");
+
+        } catch (error) {
+            toast.error("Erro ao salvar o comanda!");
+            console.error("Erro ao fazer requisição:", error);
+        }
         fecharModal();
     };
 
@@ -29,7 +45,7 @@ const Commands = () => {
         <div className="comanda-container">
             <div className="comandas-selecionadas">
                 <span className="titulo">Comanda Selecionada</span>
-                <button className="adicionar-item" onClick={abrirModal}>+ Adicionar Item</button>
+                <button className="adicionar-item" /*onClick={}*/>+ Adicionar Item</button>
             </div>
 
             <div className="comandas-fechamento">
@@ -68,8 +84,8 @@ const Commands = () => {
                                     <input
                                         type="text"
                                         id="nome-cliente"
-                                        value={nomeCliente}
-                                        onChange={(e) => setNomeCliente(e.target.value)}
+                                        value={nome}
+                                        onChange={(e) => setNome(e.target.value)}
                                         placeholder="Digite o nome do cliente"
                                     />
                                     <i className="icon-user">+user</i>
@@ -80,8 +96,8 @@ const Commands = () => {
                                 <label htmlFor="observacao">Observação</label>
                                 <textarea
                                     id="observacao"
-                                    value={observacao}
-                                    onChange={(e) => setObservacao(e.target.value)}
+                                    value={descricao}
+                                    onChange={(e) => setDescricao(e.target.value)}
                                     placeholder="Digite uma observação"
                                 />
                             </div>
