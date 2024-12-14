@@ -42,7 +42,7 @@ const Commands = () => {
     };
 
     return (
-        <div className="comanda-container">
+        <div className="commands comanda-container">
             <div className="comandas-selecionadas">
                 <span className="titulo">Comanda Selecionada</span>
                 <button className="adicionar-item" /*onClick={}*/>+ Adicionar Item</button>

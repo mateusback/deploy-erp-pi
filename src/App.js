@@ -13,6 +13,7 @@ import ProductCreation from './pages/products/ProductCreation';
 import Index from './pages/dashboard/Index';
 import Wallet from './pages/dashboard/wallet/Wallet';
 import ProductEdit from './pages/products/ProductEdit';
+import NewItem from './pages/commands/NewItem';
 
 function App() {
   return (

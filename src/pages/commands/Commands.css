@@ -1,8 +1,9 @@
-* {
+.commands * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 
 .comanda-container {
     font-family: Arial, sans-serif;
@@ -94,7 +95,6 @@
     background-color: #ddd;
 }
 
-/* Modal */
 .modal-overlay {
     position: fixed;
     top: 0;
