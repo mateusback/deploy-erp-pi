@@ -30,6 +30,7 @@ function App() {
           <Route path='/balcon' element={<DashboardLayout><Balcon /></DashboardLayout>} />
           <Route path='/wallet' element={<DashboardLayout><Wallet /></DashboardLayout>} />
           <Route path='/commands' element={<DashboardLayout><Commands /></DashboardLayout>} />
+          <Route path='/new-item' element={<DashboardLayout><NewItem /></DashboardLayout>} />
         </Routes>
       </BrowserRouter>
     </>
