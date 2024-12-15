@@ -34,14 +34,12 @@
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
 }
 
-.adicionar-item {
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    padding: 8px 16px;
-    cursor: pointer;
-    border-radius: 5px;
-    font-size: 14px;
+button.adicionar-item:disabled {
+    background-color: #dcdcdc;
+    color: #a0a0a0;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.6;
 }
 
 .comandas-fechamento {
@@ -69,7 +67,7 @@
     font-size: 14px;
 }
 
-.adicionar-comanda {
+.comandas-table {
     background-color: #fff;
     padding: 15px;
     border-radius: 8px;
@@ -201,6 +199,71 @@ textarea {
 .abrir-btn:hover {
     background-color: #388e3c;
 }
+
+.comandas-selecionadas {
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.comandas-selecionadas .titulo {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.comanda-selecionada-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #F2598C;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.comanda-selecionada {
+    padding: 10px;
+    border-radius: 5px;
+    word-wrap: break-word;
+    margin-right: 10px;
+}
+
+.comanda-selecionada p {
+    font-size: 16px;
+    font-weight: bold;
+    color: #232323;
+    margin: 0;
+}
+
+.comanda-selecionada-container .check-icon {
+    font-size: 20px;
+    color: white;
+    margin-left: 10px;
+}
+
+.comandas-selecionadas .adicionar-item {
+    padding: 8px 16px;
+    background-color: #F2598C;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.comandas-selecionadas .adicionar-item:hover {
+    background-color: #e04878;
+}
+
+
 
 @media (max-width: 768px) {
     .comanda-container {
