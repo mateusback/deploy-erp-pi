@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Commands.css';
 import { save, getAllCommands } from '../../services/CommandsService';
 import { toast } from 'react-toastify';
+import { useNavigate } from 'react-router-dom';
 
 const Commands = () => {
     const [comandasOcupadas, setComandasOcupadas] = useState([]);
@@ -13,7 +14,7 @@ const Commands = () => {
     const [totalPaginasOcupadas, setTotalPaginasOcupadas] = useState(0);
     const [totalPaginasFechamento, setTotalPaginasFechamento] = useState(0);
     const [totalPaginasDisponiveis, setTotalPaginasDisponiveis] = useState(0);
-    
+    const navigate = useNavigate();
     const [paginaAtualOcupadas, setPaginaAtualOcupadas] = useState(0);
     const [paginaAtualEmFechamento, setPaginaAtualEmFechamento] = useState(0);
     const [paginaAtualDisponiveis, setPaginaAtualDisponiveis] = useState(0);
@@ -80,9 +81,7 @@ const Commands = () => {
     };
 
     const handleAdicionarItemClick = () => {
-        if (comandaSelecionada) {
-            console.log("Comanda Selecionada para Adicionar Item:", comandaSelecionada);
-        }
+        navigate('/new-item');
     };
 
     const Pagination = ({ paginaAtual, setPaginaAtual, totalPaginas }) => (
