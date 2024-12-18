@@ -14,6 +14,7 @@ import Index from './pages/dashboard/Index';
 import Wallet from './pages/dashboard/wallet/Wallet';
 import ProductEdit from './pages/products/ProductEdit';
 import NewItem from './pages/commands/NewItem';
+import Payment from './pages/commands/Payment';
 
 function App() {
   return (
@@ -32,6 +33,7 @@ function App() {
           <Route path='/wallet' element={<DashboardLayout><Wallet /></DashboardLayout>} />
           <Route path='/commands' element={<DashboardLayout><Commands /></DashboardLayout>} />
           <Route path='/new-item' element={<DashboardLayout><NewItem /></DashboardLayout>} />
+          <Route path='/payment' element={<DashboardLayout><Payment /></DashboardLayout>} />
         </Routes>
       </BrowserRouter>
     </>
