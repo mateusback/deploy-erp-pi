@@ -10,7 +10,7 @@ const ProdutoCard = ({ nome, preco, imagem }) => (
             <CardMedia
                 component="img"
                 sx={{ width: 50, height: 50, margin: '0 auto' }}
-                image={imagem || 'https://via.placeholder.com/150'}
+                image={imagem ? `data:image/jpeg;base64,${imagem}` : 'https://via.placeholder.com/150'}
                 alt="Ícone do produto"
             />
             <Typography variant="body1" gutterBottom>
