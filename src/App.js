@@ -6,13 +6,13 @@ import Change from './pages/change-password/Change';
 import Recover from './pages/recover-password/Recover';
 import DashboardLayout from './components/layout/DashboardLayout';
 import Cadastre from './pages/cadastre/Cadastre';
-import Products from './pages/dashboard/products/Product';
+import Products from './pages/products/Product';
 import Balcon from './pages/dashboard/balcon/Balcon';
 import Commands from './pages/commands/Commands';
-import ProductCreation from './pages/dashboard/products/ProductCreation';
+import ProductCreation from './pages/products/ProductCreation';
 import Index from './pages/dashboard/Index';
 import Wallet from './pages/dashboard/wallet/Wallet';
-import ProductEdit from './pages/dashboard/products/ProductEdit';
+import ProductEdit from './pages/products/ProductEdit';
 import NewItem from './pages/commands/NewItem';
 
 function App() {
